@@ -8,10 +8,6 @@ author, and this description to match your project!
 
 "use strict";
 
-const NUM_CIRCLES = 10;
-let circleAlpha = 50;
-let circleSizeIncrease = 50;
-
 /**
 Description of preload
 */
@@ -35,14 +31,27 @@ Description of draw()
 function draw() {
     background(0);
 
-    circleAlpha = map(mouseX, 0, width, 10, 100);
-    circleSizeIncrease = map(mouseY, 0, height, 10, 100);
+    let config = {
+        x: 250,
+        y: 250,
+        width: 200,
+        height: 200,
+        fillColor: {
+            r: 255,
+            g: 255,
+            b: 0
+        },
+        mode: CENTER
+    };
 
-    for (let i = 0; i < NUM_CIRCLES; i++) {
-        push();
-        fill(255, circleAlpha);
-        ellipse(width/2, height/2, i * circleSizeIncrease);
-        pop();
-    }
+    drawFancyRect(config);
 
+}
+
+function drawFancyRect( { x, y, width, height, fillColor, mode }) {
+    push();
+    fill(fillColor.r, fillColor.g, fillColor.b);
+    rectMode(mode);
+    rect(x, y, width, height);
+    pop();
 }
