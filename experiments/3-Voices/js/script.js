@@ -8,9 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 
-const speechSynthesizer = new p5.Speech();
-
-let showSubtitle = false;
+const speechRecognizer = new p5.SpeechRec();
+let currentSpeech = '?';
 
 
 /**
@@ -27,14 +26,8 @@ Description of setup
 function setup() {
     createCanvas(500, 500);
 
-    //synthesis settings
-    console.log(speechSynthesizer.listVoices());
-    speechSynthesizer.setPitch(1);
-    speechSynthesizer.setRate(1);
-    speechSynthesizer.setVoice('Whisper');
-
-    speechSynthesizer.onStart = speechStarted;
-    speechSynthesizer.onEnd = speechEnded;
+    speechRecognizer.onResult = handleSpeechInput;
+    speechRecognizer.start();
 
 }
 
@@ -43,23 +36,12 @@ function setup() {
 Description of draw()
 */
 function draw() {
-    background(227, 200, 174);
+    background(227, 100, 174);
 
-    if (showSubtitle) {
-        textSize(36);
-        text('hello world!', 100, 100);
-    }
-
+    textAlign(CENTER, CENTER);
+    text(currentSpeech, width/2, height/2);
 }
 
-function mousePressed() {
-    speechSynthesizer.speak('hello world!');
-}
-
-function speechStarted() {
-    showSubtitle = true;
-}
-
-function speechEnded() {
-    showSubtitle = false;
+function handleSpeechInput() {
+    currentSpeech = speechRecognizer.resultString;
 }
