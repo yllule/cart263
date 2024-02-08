@@ -4,7 +4,6 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//-add assets
 //-make player scroll thru rooms
 //-make them switch rooms (buttons)
 //-have certain events happen randomly while exploring
@@ -122,12 +121,7 @@ function preload() {
 Description of setup
 */
 function setup() {
-    createCanvas(750, 750);
-    
-    push();
-    imageMode(CENTER);
-    image(frontDoorImg, width/2, height/2);
-    pop();
+    let canvas = createCanvas(500, 750);
 
     //speech recognizer settings
     speechRecognizer.onResult = onResult;
@@ -135,9 +129,9 @@ function setup() {
     speechRecognizer.start();
 
     //speech synthesizer settings
-    speechSynthesizer.setRate(random(0.01, 1));
-    speechSynthesizer.setPitch(random(0.01, 1));
-    speechSynthesizer.setVoice('Whisper'); //i believe this voice is only available on safari?
+    speechSynthesizer.setRate(0.01);
+    speechSynthesizer.setPitch(0.01);
+    speechSynthesizer.setVoice('Whisper'); //this voice is only available on chrome for mac i think :( doesn't show up on my home computer
     // console.log(speechSynthesizer.listVoices());
 
 }
@@ -149,7 +143,40 @@ Description of draw()
 function draw() {
     background(0);
 
-    rect(100, 100, 100);
+    //images
+    push();
+    imageMode(CENTER);
+    image(frontDoorImg, width/2, height/2);
+    image(msTulipImg, width/2, height-250);
+    pop();
+
+    //dialogue box
+    push();
+    noStroke();
+    rectMode(CENTER);
+    fill(200);
+    rect(width/2, height-100, 450, 70, 20, 20, 20, 20);
+    pop();
+
+    //text
+    push();
+    fill(255);
+    textSize(30);
+    textAlign(CENTER);
+    textFont('Georgia');
+    text('Click to continue', width/2, height-25);
+    pop();
+
+    canvas.mousePressed(dialogue);
+
+    //text
+    push();
+    fill(0);
+    textSize(15);
+    textAlign(CENTER);
+    textFont('Georgia');
+    text('Thank you so much for coming dear...', width/2, height-93);
+    pop();
 
     if (spiritBoxOn) {
         if (!staticbg.isPlaying()) {
@@ -164,15 +191,30 @@ function draw() {
 
 }
 
-function mousePressed() {
-    spiritBoxOn = true;
+function dialogue() {
+
+    let tulipText = [
+        'Thank you so much for coming dear...',
+        "I've been unable to rest at all with all the commotion...",
+        "Hm...signs you say?",
+        "Well there's been objects flying off the shelves, doors slamming shut, disembodied footsteps and whispers...",
+        "What may be causing this? I'm not sure...",
+        "I've lived here for years and never experienced anything like this before.",
+        "Please dear, help this poor old lady out and exorcise this ghost for me."
+
+    ]
+
 }
 
-function mouseReleased() {
-    spiritBoxOn = false;
-    staticbg.stop();
-    staticvoices.stop();
+function mousePressed() {
+    // spiritBoxOn = true;  
 }
+
+// function mouseReleased() {
+//     spiritBoxOn = false;
+//     staticbg.stop();
+//     staticvoices.stop();
+// }
 
 function onResult() {
 
