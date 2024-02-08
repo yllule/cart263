@@ -4,9 +4,6 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//1- list of questions/answers
-//2- make ghost answer questions
-//3- add gibberish for when player says smth other than questions
 //4- add static/radio sounds
 //5- have other events happen when player asks a questions (sound plays, smth happens on screen)
 //6- add assets
@@ -64,6 +61,8 @@ const answers = [
     "soil"
 ]
 
+let spiritBoxOn = false;
+
 
 /**
 Description of preload
@@ -98,21 +97,32 @@ Description of draw()
 */
 function draw() {
     background(0);
+
+    rect(100, 100, 100);
   
 
+}
+
+function mousePressed() {
+    spiritBoxOn = true;
+}
+
+function mouseReleased() {
+    spiritBoxOn = false;
 }
 
 function onResult() {
 
     console.log(speechRecognizer.resultString);
 
-    for (let i = 0; i < questions.length; i++) {
-        //check if the recognized speech matches any of the questions on the list
-        if (speechRecognizer.resultString.toLowerCase() === questions[i]) {
-            //the corresponing answer will...get spoken
-            speechSynthesizer.speak(answers[i]);
-            break;
+    if (spiritBoxOn) {
+        for (let i = 0; i < questions.length; i++) {
+            //check if the recognized speech matches any of the questions on the list
+            if (speechRecognizer.resultString.toLowerCase() === questions[i]) {
+                //the corresponing answer will...get spoken
+                speechSynthesizer.speak(answers[i]);
+                break;
+            }
         }
     }
-  
   }
