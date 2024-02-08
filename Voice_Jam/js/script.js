@@ -4,15 +4,14 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//-make player scroll thru rooms
-//-make them switch rooms (buttons)
+//-make them switch rooms (buttons) and scroll through rooms
 //-have certain events happen randomly while exploring
 //-make the garden accessible after getting a certain answer (find corpse? + ms tulip)
 //-make end screen (killed) + credits
 //-make start screen (entry door)
 
 //audio by : Percy Duke, theplax on Freesound
-//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
+//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev, Antaryami Das on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
 
 
 "use strict";
@@ -20,6 +19,21 @@ Catherine Zaloshnja
 
 const speechRecognizer = new p5.SpeechRec();
 const speechSynthesizer = new p5.Speech();
+
+let tulipTextStart = [
+    'Thank you so much for coming dear...',
+    "I've been unable to rest at all with all the commotion...",
+    "Hm...signs you say?",
+    "Well there's been objects flying off the shelves, doors slamming shut, disembodied footsteps and whispers...",
+    "What may be causing this? I'm not sure...",
+    "I've lived here for years and never experienced anything like this before.",
+    "Please dear, help this poor old lady out and exorcise this ghost for me."
+]
+
+let tulipTextEnd = [
+    "It's time for you to join the rest, dear",
+    "I wonder what beautiful flowers will sprout from you."
+]
 
 //list of questions you can ask the ghost
 const questions = [
@@ -44,7 +58,11 @@ const questions = [
     "why did she kill you",
     "what is your favorite food",
     "where should i go",
-    "where do i go"
+    "where do i go",
+    "leave miss tulip alone",
+    "leave this place",
+    "why can't you leave this place",
+    "where are you buried"
 ];
 
 //answers the ghost will give (the order corresponds to the order of the questions)
@@ -69,8 +87,12 @@ const answers = [
     "killed",
     "soil",
     "apple tater",
-    "garden",
-    "garden"
+    "run away",
+    "save yourself",
+    "i cannot",
+    "i cannot",
+    "buried",
+    "garden. beware"
 ]
 
 //variables for images
@@ -121,7 +143,7 @@ function preload() {
 Description of setup
 */
 function setup() {
-    let canvas = createCanvas(500, 750);
+    createCanvas(500, 750);
 
     //speech recognizer settings
     speechRecognizer.onResult = onResult;
@@ -167,15 +189,13 @@ function draw() {
     text('Click to continue', width/2, height-25);
     pop();
 
-    canvas.mousePressed(dialogue);
-
     //text
     push();
     fill(0);
     textSize(15);
     textAlign(CENTER);
     textFont('Georgia');
-    text('Thank you so much for coming dear...', width/2, height-93);
+    text('Thank you so much for coming dear...', width/2, height-95);
     pop();
 
     if (spiritBoxOn) {
@@ -188,22 +208,6 @@ function draw() {
             staticvoices.loop();
         }
     }
-
-}
-
-function dialogue() {
-
-    let tulipText = [
-        'Thank you so much for coming dear...',
-        "I've been unable to rest at all with all the commotion...",
-        "Hm...signs you say?",
-        "Well there's been objects flying off the shelves, doors slamming shut, disembodied footsteps and whispers...",
-        "What may be causing this? I'm not sure...",
-        "I've lived here for years and never experienced anything like this before.",
-        "Please dear, help this poor old lady out and exorcise this ghost for me."
-
-    ]
-
 }
 
 function mousePressed() {
