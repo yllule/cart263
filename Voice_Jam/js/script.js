@@ -35,7 +35,10 @@ const questions = [
     "who killed you",
     "what should i be aware of",
     "why do you want revenge",
-    "why did she kill you"
+    "why did she kill you",
+    "what is your favorite food",
+    "where should i go",
+    "where do i go"
 ];
 
 //answers the ghost will give (the order corresponds to the order of the questions)
@@ -58,9 +61,17 @@ const answers = [
     "miss tulip",
     "miss tulip",
     "killed",
-    "soil"
+    "soil",
+    "apple tater",
+    "garden",
+    "garden"
 ]
 
+//variables for sounds
+let staticbg;
+let staticvoices;
+
+//boolean to check if the spiritbox is on or not
 let spiritBoxOn = false;
 
 
@@ -69,6 +80,8 @@ Description of preload
 */
 function preload() {
 
+    staticbg = loadSound('assets/sounds/staticbg.mp3');
+    staticvoices = loadSound('assets/sounds/staticvoices.wav');
 }
 
 
@@ -84,9 +97,9 @@ function setup() {
     speechRecognizer.start();
 
     //speech synthesizer settings
-    speechSynthesizer.setRate(1);
-    speechSynthesizer.setPitch(1);
-    speechSynthesizer.setVoice('Whisper'); //i believe this voice is only available on safari? so on the uni computers which sucks cause i'd like to have this voice for my project
+    speechSynthesizer.setRate(random(0.01, 1));
+    speechSynthesizer.setPitch(random(0.01, 1));
+    speechSynthesizer.setVoice('Whisper'); //i believe this voice is only available on safari?
     // console.log(speechSynthesizer.listVoices());
 
 }
@@ -99,7 +112,17 @@ function draw() {
     background(0);
 
     rect(100, 100, 100);
-  
+
+    if (spiritBoxOn) {
+        if (!staticbg.isPlaying()) {
+            staticbg.setVolume(0.25);
+            staticbg.loop();
+        }
+        if (!staticvoices.isPlaying()) {
+            staticvoices.setVolume(0.25);
+            staticvoices.loop();
+        }
+    }
 
 }
 
@@ -109,6 +132,8 @@ function mousePressed() {
 
 function mouseReleased() {
     spiritBoxOn = false;
+    staticbg.stop();
+    staticvoices.stop();
 }
 
 function onResult() {
