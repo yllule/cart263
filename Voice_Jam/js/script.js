@@ -4,9 +4,17 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//4- add static/radio sounds
-//5- have other events happen when player asks a questions (sound plays, smth happens on screen)
-//6- add assets
+//-make assets for ms tulip
+//-add assets
+//-make player scroll thru rooms
+//-make them switch rooms (buttons)
+//-have certain events happen randomly while exploring
+//-make the garden accessible after getting a certain answer (find corpse? + ms tulip)
+//-make end screen (killed) + credits
+//-make start screen (entry door)
+
+//audio by : Percy Duke, theplax on Freesound
+//original unedited images by : Charlotte May, Vlada Karpovich on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
 
 
 "use strict";
