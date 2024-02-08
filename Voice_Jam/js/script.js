@@ -36,7 +36,7 @@ const questions = [
     "hello",
     "let me know you are here",
     "who killed you",
-    "what should i beware",
+    "what should i be aware of",
     "why do you want revenge",
     "why did she kill you"
 ];
@@ -44,24 +44,24 @@ const questions = [
 //answers the ghost will give (the order corresponds to the order of the questions)
 const answers = [
     "killed",
-    "below the soil", //?
+    "below the soil",
     "beware",
-    "old", //young?
+    "old",
     "arnold",
-    "revenge", //justice?
+    "revenge",
     "killed",
     "come closer",
-    "oughe", //gibberish
+    "oughe",
     "run away",
-    "aaaaa", //scream/gibberish
-    "oughe", //gibberish
+    "asdjkfh",
+    "idskfslkfh",
     "arnold",
     "hi",
-    "iiii", //gibberish
+    "i",
     "miss tulip",
     "miss tulip",
     "killed",
-    "fertilizer" //idk
+    "soil"
 ]
 
 
@@ -106,8 +106,13 @@ function onResult() {
 
     console.log(speechRecognizer.resultString);
 
-    if (speechRecognizer.resultString === questions[0]) {
-        speechSynthesizer.speak(answers[0]);
+    for (let i = 0; i < questions.length; i++) {
+        //check if the recognized speech matches any of the questions on the list
+        if (speechRecognizer.resultString.toLowerCase() === questions[i]) {
+            //the corresponing answer will...get spoken
+            speechSynthesizer.speak(answers[i]);
+            break;
+        }
     }
   
   }
