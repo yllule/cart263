@@ -74,6 +74,20 @@ const answers = [
     "garden"
 ]
 
+//variables for images
+let backyardDoorImg;
+let backyardImg;
+let bathroomImg;
+let bedroomImg;
+let diningRoomImg;
+let frontDoorImg;
+let kitchen1Img;
+let kitchen2Img;
+let livingRoomImg;
+let msTulipImg;
+let plantsImg;
+
+
 //variables for sounds
 let staticbg;
 let staticvoices;
@@ -89,6 +103,18 @@ function preload() {
 
     staticbg = loadSound('assets/sounds/staticbg.mp3');
     staticvoices = loadSound('assets/sounds/staticvoices.wav');
+
+    backyardDoorImg = loadImage("assets/images/backyard_door.png");
+    backyardImg = loadImage("assets/images/backyard.png");
+    bathroomImg = loadImage("assets/images/bathroom.png");
+    bedroomImg = loadImage("assets/images/bedroom.png");
+    diningRoomImg = loadImage("assets/images/dining_room.png");
+    frontDoorImg = loadImage("assets/images/front_door.png");
+    kitchen1Img = loadImage("assets/images/kitchen1.png");
+    kitchen2Img = loadImage("assets/images/kitchen2.png");
+    livingRoomImg = loadImage("assets/images/living_room.png");
+    msTulipImg = loadImage("assets/images/mstulip.png");
+    plantsImg = loadImage("assets/images/plants.png");
 }
 
 
@@ -96,7 +122,12 @@ function preload() {
 Description of setup
 */
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(750, 750);
+    
+    push();
+    imageMode(CENTER);
+    image(frontDoorImg, width/2, height/2);
+    pop();
 
     //speech recognizer settings
     speechRecognizer.onResult = onResult;
