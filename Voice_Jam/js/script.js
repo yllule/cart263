@@ -4,7 +4,6 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//-make assets for ms tulip
 //-add assets
 //-make player scroll thru rooms
 //-make them switch rooms (buttons)
@@ -14,7 +13,7 @@ Catherine Zaloshnja
 //-make start screen (entry door)
 
 //audio by : Percy Duke, theplax on Freesound
-//original unedited images by : Charlotte May, Vlada Karpovich on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
+//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
 
 
 "use strict";
