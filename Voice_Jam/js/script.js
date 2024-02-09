@@ -11,7 +11,7 @@ Catherine Zaloshnja
 //-make start screen (entry door)
 
 //audio by : Percy Duke, theplax on Freesound
-//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev, Antaryami Das on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
+//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev, Antaryami Das, Darina Belonogova on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
 
 
 "use strict";
@@ -32,9 +32,19 @@ let tulipTextStart = [
     "And I've never experienced anything like this before.",
     "Please dear, help this poor old lady out.",
     "Please exorcise this ghost for me."
-]
+];
 
 let currentIndex = 0;
+
+let tutText = [
+    'Ms Tulip has entrusted you to rid her home of a ghost that has been suddenly haunting her.',
+    'Feel free to look around and explore the home to find clues.',
+    'Open your spirit box to communicate with the ghost by pressing your mouse.',
+    'You have a list of ghost icebreaker questions with you in case you forget what to ask them.',
+    'Good luck and happy ghost hunting!'
+];
+
+let currentIndexTut = 0;
 
 let tulipTextEnd = "I wonder what lovely flowers will sprout from you."
 
@@ -65,7 +75,8 @@ const questions = [
     "leave miss tulip alone",
     "leave this place",
     "why can't you leave this place",
-    "where are you buried"
+    "where are you buried",
+    "can you repeat that"
 ];
 
 //answers the ghost will give (the order corresponds to the order of the questions)
@@ -95,7 +106,8 @@ const answers = [
     "i cannot",
     "i cannot",
     "buried",
-    "garden. beware"
+    "garden. beware",
+    "no"
 ]
 
 //variables for images
@@ -110,6 +122,10 @@ let kitchen2Img;
 let livingRoomImg;
 let msTulipImg;
 let plantsImg;
+let handImg;
+let arrowImg;
+let arrow2Img;
+let notesImg;
 
 
 //variables for sounds
@@ -139,6 +155,10 @@ function preload() {
     livingRoomImg = loadImage("assets/images/living_room.png");
     msTulipImg = loadImage("assets/images/mstulip.png");
     plantsImg = loadImage("assets/images/plants.png");
+    handImg = loadImage("assets/images/hand.png");
+    arrowImg = loadImage("assets/images/arrow.png");
+    arrow2Img = loadImage("assets/images/arrow2.png");
+    notesImg = loadImage("assets/images/notes.png");
 }
 
 
@@ -156,8 +176,8 @@ function setup() {
     speechRecognizer.start();
 
     //speech synthesizer settings
-    speechSynthesizer.setRate(0.01);
-    speechSynthesizer.setPitch(0.01);
+    speechSynthesizer.setRate(0.1);
+    speechSynthesizer.setPitch(0.1);
     speechSynthesizer.setVoice('Whisper'); //this voice is only available on chrome for mac i think :( doesn't show up on my home computer
     // console.log(speechSynthesizer.listVoices());
 
@@ -185,16 +205,12 @@ function draw() {
 }
 
 function mousePressed() {
-    // spiritBoxOn = true;
-
     currentState.mousePressed();
 }
 
-// function mouseReleased() {
-//     spiritBoxOn = false;
-//     staticbg.stop();
-//     staticvoices.stop();
-// }
+function mouseReleased() {
+    currentState.mouseReleased();
+}
 
 function onResult() {
 
