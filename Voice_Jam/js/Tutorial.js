@@ -1,0 +1,9 @@
+class Tutorial {
+    constructor() {
+
+    }
+
+    draw() {
+        
+    }
+}

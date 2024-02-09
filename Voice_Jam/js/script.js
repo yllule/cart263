@@ -16,24 +16,27 @@ Catherine Zaloshnja
 
 "use strict";
 
+//possible states = intro, tutorial, living room, dining room, kitchen, hallway, bathroom, bedroom, backyarddoor, backyard, end
+let currentState;
 
 const speechRecognizer = new p5.SpeechRec();
 const speechSynthesizer = new p5.Speech();
 
 let tulipTextStart = [
     'Thank you so much for coming dear...',
-    "I've been unable to rest at all with all the commotion...",
-    "Hm...signs you say?",
-    "Well there's been objects flying off the shelves, doors slamming shut, disembodied footsteps and whispers...",
+    "I've been unable to rest at all with all this activity...",
+    "What kind of activity?",
+    "Well...doors slamming shut, disembodied footsteps and whispers...",
     "What may be causing this? I'm not sure...",
-    "I've lived here for years and never experienced anything like this before.",
-    "Please dear, help this poor old lady out and exorcise this ghost for me."
+    "I've lived here for years...",
+    "And I've never experienced anything like this before.",
+    "Please dear, help this poor old lady out.",
+    "Please exorcise this ghost for me."
 ]
 
-let tulipTextEnd = [
-    "It's time for you to join the rest, dear",
-    "I wonder what beautiful flowers will sprout from you."
-]
+let currentIndex = 0;
+
+let tulipTextEnd = "I wonder what lovely flowers will sprout from you."
 
 //list of questions you can ask the ghost
 const questions = [
@@ -145,6 +148,8 @@ Description of setup
 function setup() {
     createCanvas(500, 750);
 
+    currentState = new Intro();
+
     //speech recognizer settings
     speechRecognizer.onResult = onResult;
     speechRecognizer.continuous = true;
@@ -165,38 +170,7 @@ Description of draw()
 function draw() {
     background(0);
 
-    //images
-    push();
-    imageMode(CENTER);
-    image(frontDoorImg, width/2, height/2);
-    image(msTulipImg, width/2, height-250);
-    pop();
-
-    //dialogue box
-    push();
-    noStroke();
-    rectMode(CENTER);
-    fill(200);
-    rect(width/2, height-100, 450, 70, 20, 20, 20, 20);
-    pop();
-
-    //text
-    push();
-    fill(255);
-    textSize(30);
-    textAlign(CENTER);
-    textFont('Georgia');
-    text('Click to continue', width/2, height-25);
-    pop();
-
-    //text
-    push();
-    fill(0);
-    textSize(15);
-    textAlign(CENTER);
-    textFont('Georgia');
-    text('Thank you so much for coming dear...', width/2, height-95);
-    pop();
+    currentState.draw();
 
     if (spiritBoxOn) {
         if (!staticbg.isPlaying()) {
@@ -211,7 +185,9 @@ function draw() {
 }
 
 function mousePressed() {
-    // spiritBoxOn = true;  
+    // spiritBoxOn = true;
+
+    currentState.mousePressed();
 }
 
 // function mouseReleased() {
