@@ -1,4 +1,4 @@
-class Livingroom {
+class Kitchen {
     constructor() {
 
     }
@@ -7,7 +7,7 @@ class Livingroom {
         //images
         push();
         imageMode(CENTER);
-        image(livingRoomImg, width/2, height/2);
+        image(kitchen1Img, width/2, height/2);
         image(arrowImg, width-75, height-75);
         image(arrow2Img, 75, height-75);
         if(spiritBoxOn) {
@@ -29,11 +29,11 @@ class Livingroom {
 
     keyPressed() {
         if (keyCode === LEFT_ARROW) {
-            currentState = new Diningroom;
+            currentState = new Bathroom;
         }
 
         if (keyCode === RIGHT_ARROW) {
-            currentState = new Hallway;
+            currentState = new Diningroom;
         }
     }
 }

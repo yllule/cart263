@@ -38,7 +38,7 @@ let currentIndex = 0;
 
 let tutText = [
     'Ms Tulip has entrusted you to rid her home of a ghost that has been suddenly haunting her.',
-    'Feel free to look around and explore the home to find clues.',
+    'Feel free to look around and explore the home to find clues by using your arrow keys.',
     'Open your spirit box to communicate with the ghost by pressing your mouse.',
     'You have a list of ghost icebreaker questions with you in case you forget what to ask them.',
     'Good luck and happy ghost hunting!'
@@ -118,7 +118,6 @@ let bedroomImg;
 let diningRoomImg;
 let frontDoorImg;
 let kitchen1Img;
-let kitchen2Img;
 let livingRoomImg;
 let msTulipImg;
 let plantsImg;
@@ -151,7 +150,6 @@ function preload() {
     diningRoomImg = loadImage("assets/images/dining_room.png");
     frontDoorImg = loadImage("assets/images/front_door.png");
     kitchen1Img = loadImage("assets/images/kitchen1.png");
-    kitchen2Img = loadImage("assets/images/kitchen2.png");
     livingRoomImg = loadImage("assets/images/living_room.png");
     msTulipImg = loadImage("assets/images/mstulip.png");
     plantsImg = loadImage("assets/images/plants.png");
@@ -210,6 +208,10 @@ function mousePressed() {
 
 function mouseReleased() {
     currentState.mouseReleased();
+}
+
+function keyPressed() {
+    currentState.keyPressed();
 }
 
 function onResult() {
