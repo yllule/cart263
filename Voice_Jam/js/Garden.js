@@ -19,6 +19,11 @@ class Garden {
     draw() {
         //sounds stop
         ambiance.stop();
+
+        if (!outside.isPlaying()) {
+            outside.setVolume(0.3);
+            outside.loop();
+        }
         
         //transition to garden img
         push();

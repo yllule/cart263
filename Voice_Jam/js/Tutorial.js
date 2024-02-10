@@ -5,6 +5,7 @@ class Tutorial {
 
     draw() {
 
+        outside.stop();
         //adding bg music
         if (!ambiance.isPlaying()) {
             ambiance.setVolume(0.5);

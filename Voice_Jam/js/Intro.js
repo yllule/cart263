@@ -5,6 +5,12 @@ class Intro {
 
     draw() {
 
+        //outside noises
+        if (!outside.isPlaying()) {
+            outside.setVolume(0.3);
+            outside.loop();
+        }
+
         //images
         push();
         imageMode(CENTER);

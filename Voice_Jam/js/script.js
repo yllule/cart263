@@ -14,7 +14,7 @@ const speechSynthesizer = new p5.Speech();
 //ms tulips dialogue at the start
 let tulipTextStart = [
     'Thank you so much for coming dear...',
-    "I've been unable to rest at all with all this activity...",
+    "I've been unable to rest with all this activity...",
     "What kind of activity?",
     "Well...doors slamming shut, disembodied footsteps and whispers...",
     "What may be causing this? I'm not sure...",
@@ -130,6 +130,7 @@ let footstepsSFX;
 let crashSFX;
 let ambiance;
 let end;
+let outside;
 
 //boolean to check if the spiritbox is on or not
 let spiritBoxOn = false;
@@ -146,6 +147,7 @@ function preload() {
     crashSFX = loadSound("assets/sounds/crash.mp3");
     ambiance = loadSound("assets/sounds/ambiance.mp3");
     end = loadSound("assets/sounds/end.wav");
+    outside = loadSound("assets/sounds/outside.wav");
 
     backyardDoorImg = loadImage("assets/images/backyard_door.png");
     backyardImg = loadImage("assets/images/backyard.png");
