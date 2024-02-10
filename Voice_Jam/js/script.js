@@ -5,12 +5,13 @@ Catherine Zaloshnja
 
 "use strict";
 
-//possible states = intro, tutorial, living room, dining room, kitchen, hallway, bathroom, bedroom, backyarddoor, backyard, end
+//possible states = intro, tutorial, living room, dining room, kitchen, hallway, bathroom, bedroom, backyarddoor, backyard, ending
 let currentState;
 
 const speechRecognizer = new p5.SpeechRec();
 const speechSynthesizer = new p5.Speech();
 
+//ms tulips dialogue at the start
 let tulipTextStart = [
     'Thank you so much for coming dear...',
     "I've been unable to rest at all with all this activity...",
@@ -25,6 +26,7 @@ let tulipTextStart = [
 
 let currentIndex = 0;
 
+//tutorial text
 let tutText = [
     'Ms Tulip has entrusted you to rid her home of a ghost that has been suddenly haunting her.',
     'Feel free to look around and explore the home to find clues by using your arrow keys.',
@@ -35,6 +37,7 @@ let tutText = [
 
 let currentIndexTut = 0;
 
+//what ms tulip says at the end
 let tulipTextEnd = "I wonder what lovely flowers will sprout from you."
 
 //list of questions you can ask the ghost
@@ -125,6 +128,8 @@ let staticbg;
 let staticvoices;
 let footstepsSFX;
 let crashSFX;
+let ambiance;
+let end;
 
 //boolean to check if the spiritbox is on or not
 let spiritBoxOn = false;
@@ -139,6 +144,8 @@ function preload() {
     staticvoices = loadSound('assets/sounds/staticvoices.wav');
     footstepsSFX = loadSound("assets/sounds/footsteps.mp3");
     crashSFX = loadSound("assets/sounds/crash.mp3");
+    ambiance = loadSound("assets/sounds/ambiance.mp3");
+    end = loadSound("assets/sounds/end.wav");
 
     backyardDoorImg = loadImage("assets/images/backyard_door.png");
     backyardImg = loadImage("assets/images/backyard.png");
@@ -167,6 +174,7 @@ Description of setup
 function setup() {
     createCanvas(500, 750);
 
+    //start on intro state
     currentState = new Intro();
 
     //speech recognizer settings
@@ -191,6 +199,7 @@ function draw() {
 
     currentState.draw();
 
+    //spirit box sounds only play when it is being used
     if (spiritBoxOn) {
         if (!staticbg.isPlaying()) {
             staticbg.setVolume(0.25);

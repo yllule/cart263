@@ -38,6 +38,7 @@ class Livingroom {
     }
 
     scare() {
+        //random shadow appears
         image(shadowImg, width/2, height/2-75);
     }
 }

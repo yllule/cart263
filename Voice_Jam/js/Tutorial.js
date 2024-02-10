@@ -4,6 +4,13 @@ class Tutorial {
     }
 
     draw() {
+
+        //adding bg music
+        if (!ambiance.isPlaying()) {
+            ambiance.setVolume(0.5);
+            ambiance.loop();
+        }
+
         //images
         push();
         imageMode(CENTER);
@@ -30,8 +37,10 @@ class Tutorial {
     }
 
     mousePressed() {
+        //makes the text change
         currentIndexTut = currentIndexTut + 1;
 
+        //after seeing all the tutorial text, you move to the next state
         if (currentIndexTut === 5) {
             currentState = new Livingroom;
         }

@@ -17,8 +17,10 @@ class Garden {
     }
 
     draw() {
-        //images
-
+        //sounds stop
+        ambiance.stop();
+        
+        //transition to garden img
         push();
         imageMode(CENTER);
         tint(255, this.fade);
@@ -28,14 +30,7 @@ class Garden {
         image(backyardImg, width/2, height/2);
         pop();
 
-        push();
-        imageMode(CENTER);
-        if(spiritBoxOn) {
-            image(handImg, width-50, height/2+100);
-            image(notesImg, 75, height/2+100);
-        }
-        pop();
-
+        //makes ms tulip appear
         if (this.mstulip) {
             push();
             imageMode(CENTER);
@@ -71,6 +66,7 @@ class Garden {
             image(redImg, width/2, height/2);
             pop();
 
+            //when bg is red, change state to ending
             if (this.fade2 === 255) {
                 currentState = new Ending;
             }
@@ -78,11 +74,14 @@ class Garden {
     }
 
     mousePressed() {
+        //makes ms tulip appear
         this.mstulip = true;
     }
 
     mouseReleased() {
+        //makes dialogue box appear + game over sound
         this.dialogue = true;
         this.end = true;
+        end.play();
     }
 }

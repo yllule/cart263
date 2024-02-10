@@ -40,8 +40,10 @@ class Intro {
     }
 
     mousePressed() {
+        //makes the dialogue progress
         currentIndex = currentIndex + 1;
 
+        //after finished with dialogue, enter tutorial
         if (currentIndex === 9) {
             currentState = new Tutorial;
         }
