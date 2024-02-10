@@ -3,16 +3,6 @@ Ghost Hunting Simulator
 Catherine Zaloshnja
 */
 
-//notes to self
-//-have certain events happen randomly while exploring
-//-make the garden accessible after getting a certain answer (find corpse? + ms tulip)
-//-make end screen (killed) + credits
-//-make start screen (entry door)
-
-//audio by : Percy Duke, theplax on Freesound
-//original unedited images by : Charlotte May, Vlada Karpovich, Askar Abayev, Antaryami Das, Darina Belonogova on Pexels and Forte Foundry, Annie Spratt, Arno Smit, Hans Isaacson, Aaron Huber, Kate Darmody, Julian Hochgesang on Unsplash and rorozoa on freepik
-
-
 "use strict";
 
 //possible states = intro, tutorial, living room, dining room, kitchen, hallway, bathroom, bedroom, backyarddoor, backyard, end
@@ -125,6 +115,8 @@ let arrowImg;
 let arrow2Img;
 let notesImg;
 let uparrowImg;
+let redImg;
+let msTulip2Img;
 
 
 //variables for sounds
@@ -158,6 +150,8 @@ function preload() {
     arrow2Img = loadImage("assets/images/arrow2.png");
     notesImg = loadImage("assets/images/notes.png");
     uparrowImg = loadImage("assets/images/uparrow.png");
+    redImg = loadImage("assets/images/red.png");
+    msTulip2Img = loadImage("assets/images/mstulip2.png");
 }
 
 

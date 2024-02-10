@@ -46,4 +46,8 @@ class Intro {
             currentState = new Tutorial;
         }
     }
+
+    mouseReleased() {
+
+    }
 }

@@ -36,4 +36,8 @@ class Tutorial {
             currentState = new Livingroom;
         }
     }
+
+    mouseReleased() {
+
+    }
 }
