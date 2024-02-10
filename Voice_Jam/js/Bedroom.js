@@ -36,4 +36,8 @@ class Bedroom {
             currentState = new Bathroom;
         }
     }
+
+    scare() {
+        crashSFX.play();
+    }
 }

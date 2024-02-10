@@ -117,11 +117,14 @@ let notesImg;
 let uparrowImg;
 let redImg;
 let msTulip2Img;
+let shadowImg;
 
 
 //variables for sounds
 let staticbg;
 let staticvoices;
+let footstepsSFX;
+let crashSFX;
 
 //boolean to check if the spiritbox is on or not
 let spiritBoxOn = false;
@@ -134,6 +137,8 @@ function preload() {
 
     staticbg = loadSound('assets/sounds/staticbg.mp3');
     staticvoices = loadSound('assets/sounds/staticvoices.wav');
+    footstepsSFX = loadSound("assets/sounds/footsteps.mp3");
+    crashSFX = loadSound("assets/sounds/crash.mp3");
 
     backyardDoorImg = loadImage("assets/images/backyard_door.png");
     backyardImg = loadImage("assets/images/backyard.png");
@@ -152,6 +157,7 @@ function preload() {
     uparrowImg = loadImage("assets/images/uparrow.png");
     redImg = loadImage("assets/images/red.png");
     msTulip2Img = loadImage("assets/images/mstulip2.png");
+    shadowImg = loadImage("assets/images/shadow.png");
 }
 
 
@@ -209,6 +215,10 @@ function keyPressed() {
     currentState.keyPressed();
 }
 
+function scare(){
+    currentState.scare();
+}
+
 function onResult() {
 
     console.log(speechRecognizer.resultString);
@@ -223,8 +233,13 @@ function onResult() {
             }
         }
         //if you find out arnold is buried in the garden, you can access it through the backyard door
-        if (answers[25]) {
+        if (speechRecognizer.resultString.toLowerCase() === 'where are you buried') {
             currentState = new Backyarddoor;
+        }
+
+        //if you ask these questions, there will be a scare
+        if (speechRecognizer.resultString.toLowerCase() === 'give me a sign' || speechRecognizer.resultString.toLowerCase() === 'show yourself' || speechRecognizer.resultString.toLowerCase() === 'let me know you are here') {
+            scare();
         }
     }
   }

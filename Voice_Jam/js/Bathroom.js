@@ -36,4 +36,7 @@ class Bathroom {
             currentState = new Kitchen;
         }
     }
+    scare() {
+        image(shadowImg, width/2+15, height/2-15);
+    }
 }

@@ -36,4 +36,8 @@ class Hallway {
             currentState = new Bedroom;
         }
     }
+    
+    scare() {
+        crashSFX.play();
+    }
 }

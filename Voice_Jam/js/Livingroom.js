@@ -36,4 +36,8 @@ class Livingroom {
             currentState = new Hallway;
         }
     }
+
+    scare() {
+        image(shadowImg, width/2, height/2-75);
+    }
 }

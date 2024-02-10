@@ -36,4 +36,8 @@ class Kitchen {
             currentState = new Diningroom;
         }
     }
+
+    scare() {
+        footstepsSFX.play();
+    }
 }
