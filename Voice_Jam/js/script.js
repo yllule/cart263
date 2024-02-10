@@ -4,7 +4,6 @@ Catherine Zaloshnja
 */
 
 //notes to self
-//-make them switch rooms (buttons) and scroll through rooms
 //-have certain events happen randomly while exploring
 //-make the garden accessible after getting a certain answer (find corpse? + ms tulip)
 //-make end screen (killed) + credits
@@ -125,6 +124,7 @@ let handImg;
 let arrowImg;
 let arrow2Img;
 let notesImg;
+let uparrowImg;
 
 
 //variables for sounds
@@ -157,6 +157,7 @@ function preload() {
     arrowImg = loadImage("assets/images/arrow.png");
     arrow2Img = loadImage("assets/images/arrow2.png");
     notesImg = loadImage("assets/images/notes.png");
+    uparrowImg = loadImage("assets/images/uparrow.png");
 }
 
 
@@ -226,6 +227,10 @@ function onResult() {
                 speechSynthesizer.speak(answers[i]);
                 break;
             }
+        }
+        //if you find out arnold is buried in the garden, you can access it through the backyard door
+        if (answers[25]) {
+            currentState = new Backyarddoor;
         }
     }
   }
