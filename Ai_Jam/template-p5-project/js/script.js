@@ -1,10 +1,16 @@
 /**
-Title of Project
-Author Name
+Rock Paper Scissors
+Catherine Zaloshnja
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Play rock paper scissors with the computer
 */
+
+//notes to self :
+//1-make it recognize all the hand poses (rock, paper, scissors) add easter eggs like gun + heart?
+//2-make the comp choose btw rock paper scissors randomly
+//3-make game outcome (win/lose/tie/play again (if no hand pose is detected?))
+//4-make game visuals (click to start, countdown to 3 then reveal poses, game outcome)
+
 
 "use strict";
 
