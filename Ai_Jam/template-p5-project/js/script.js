@@ -1,15 +1,13 @@
 /**
-Rock Paper Scissors
+Character customization
 Catherine Zaloshnja
-
-Play rock paper scissors with the computer
 */
 
 //notes to self :
-//1-make it recognize all the hand poses (rock, paper, scissors) add easter eggs like gun + heart?
-//2-make the comp choose btw rock paper scissors randomly
-//3-make game outcome (win/lose/tie/play again (if no hand pose is detected?))
-//4-make game visuals (click to start, countdown to 3 then reveal poses, game outcome)
+//1-make it possible to drag a circle by touching thumb + index
+//2- add different draggable items
+//3- make ui/assets
+//4- add states (tutorial/customization/confirm)
 
 
 "use strict";
@@ -21,14 +19,14 @@ let handpose = undefined;
 let predictions = [];
 
 //temporary img
-let clownImg;
+let scissorsImg;
 
 
 /**
 Description of preload
 */
 function preload() {
-    clownImg = loadImage('assets/images/clown.png');
+    scissorsImg = loadImage('assets/images/scissors.png');
 
 }
 
@@ -71,10 +69,9 @@ function draw() {
         let base = index[0];
         let tipX = tip[0];
         let tipY = tip[1];
-        let baseX = base[0];
-        let baseY = base[1];
-        image(clownImg, tipX, tipY);
-        image(clownImg, baseX, baseY);
+        // let baseX = base[0];
+        // let baseY = base[1];
+        image(scissorsImg, tipX, tipY, 200, 200);
     }
 
 }
