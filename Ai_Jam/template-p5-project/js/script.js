@@ -5,22 +5,11 @@ Catherine Zaloshnja
 
 //notes to self :
 //1- make it possible to drag a circle by touching thumb + index
+//3- make ui/assets
+
 //2- add different draggable items
 //3- make it possible to change "settings" (ex:filters, colors) by pointing with index
-//3- make ui/assets
 //4- add states (tutorial/customization/confirm)
-
-//asset list
-//-5 bg images (simple)
-//-base birb body
-//-4 different birb colorings
-//-3 hats
-//-2 bows
-//-2 scarfs
-//-2 necklace
-//-3 shoes
-//-2 glasses
-//-5 frames/deco (simple)
 
 
 "use strict";
