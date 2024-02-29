@@ -6,12 +6,12 @@ This is a dumpster fire with lots of repetitive code. There was likely a better 
 
 
 //notes to self
-//-states
-//tutorial : instruction (touch index to thumb to drag, point with index to select), start button (click?)
 //add bgm
-//end : add white bg over everything minus frame content, yipee sound effect, confetti gif?
+//end : add white bg over everything minus frame content, reverb fart sound effect, confetti gif?
 
 "use strict";
+
+let state = 'title' //can be title, simulation, ending
 
 let video = undefined;
 //handpose model
@@ -152,6 +152,36 @@ let acc8 = {
     y:325
 }
 
+//confirm button positions
+let confirmButt = {
+    x:510,
+    y:455
+}
+
+//frame positions
+let framePos = {
+    x:325,
+    y:185
+}
+
+//birb bg positions
+let birbBgPos = {
+    x:325,
+    y:185
+}
+
+//birb positions
+let birbs = {
+    x:340,
+    y:185
+}
+
+//ui bg img position
+let bg = {
+    x:320,
+    y:240
+}
+
 //assets
 let box1Img;
 let box2Img;
@@ -251,32 +281,33 @@ function setup() {
 Description of draw()
 */
 function draw() {
-    background(100);
+    background(0);
+    
 
     //display of bg image + confirm button
     push();
     imageMode(CENTER);
-    image(bgImg, width/2, height/2);
-    image(confirmImg, 510, 455);
+    image(bgImg, bg.x, bg.y);
+    image(confirmImg, confirmButt.x, confirmButt.y);
     pop();
 
     //display of what frame is shown depending on user's choice
     if(currentFrame === 0) {
         push();
         imageMode(CENTER);
-        image(frame1Img, 325, 185);
+        image(frame1Img, framePos.x, framePos.y);
         pop();
     }
         else if (currentFrame === 1) {
             push();
             imageMode(CENTER);
-            image(frame2Img, 325, 185);
+            image(frame2Img, framePos.x, framePos.y);
             pop();
         }
             else if (currentFrame === 2) {
                 push();
                 imageMode(CENTER);
-                image(frame3Img, 325, 185);
+                image(frame3Img, framePos.x, framePos.y);
                 pop();
             }
 
@@ -284,19 +315,19 @@ function draw() {
     if (currentBirbBg === 0) {
         push();
         imageMode(CENTER);
-        image(birbBg1Img, 325, 185);
+        image(birbBg1Img, birbBgPos.x, birbBgPos.y);
         pop();
     }
         else if (currentBirbBg === 1) {
             push();
             imageMode(CENTER);
-            image(birbBg2Img, 325, 185);
+            image(birbBg2Img, birbBgPos.x, birbBgPos.y);
             pop();
         }
             else if (currentBirbBg === 2) {
                 push();
                 imageMode(CENTER);
-                image(birbBg3Img, 325, 185);
+                image(birbBg3Img, birbBgPos.x, birbBgPos.y);
                 pop();
             }
 
@@ -304,180 +335,21 @@ function draw() {
     if (currentBirb === 0) {
         push();
         imageMode(CENTER);
-        image(birb1Img, 340, 185);
+        image(birb1Img, birbs.x, birbs.y);
         pop();
     }
         else if (currentBirb === 1) {
             push();
             imageMode(CENTER);
-            image(birb2Img, 340, 185);
+            image(birb2Img, birbs.x, birbs.y);
             pop();
         }
             else if (currentBirb === 2) {
                 push();
                 imageMode(CENTER);
-                image(birb3Img, 340, 185);
+                image(birb3Img, birb.x, birbs.y);
                 pop();
             }
-
-    //all interactivity is here
-    if (predictions.length > 0) {
-        let hand = predictions[0];
-        //variables for the index finger
-        let index = hand.annotations.indexFinger;
-        let indexTip = index[3];
-        let indexTipX = indexTip[0];
-        let indexTipY = indexTip[1];
-        //variables for the thumb
-        let thumb = hand.annotations.thumb;
-        let thumbTip = thumb[3];
-        let thumbTipX = thumbTip[0];
-        let thumbTipY = thumbTip[1];
-        //distance btw index and thumb
-        //(used to check if the thumb and index are touching over the object)
-        let d = dist(indexTipX, indexTipY, thumbTipX, thumbTipY);
-
-        //setting the coordinates of the index cursor + thumb cursor
-        indexCursor.x = indexTipX;
-        indexCursor.y = indexTipY;
-        thumbCursor.x = thumbTipX;
-        thumbCursor.y = thumbTipY;
-        
-        //checking the dist btw index and all boxes
-        let dbox1 = dist(indexTipX, indexTipY, box1.x, box1.y);
-        let dbox2 = dist(indexTipX, indexTipY, box2.x, box2.y);
-        let dbox3 = dist(indexTipX, indexTipY, box3.x, box3.y);
-        let dbox4 = dist(indexTipX, indexTipY, box4.x, box4.y);
-        let dbox5 = dist(indexTipX, indexTipY, box5.x, box5.y);
-        let dbox6 = dist(indexTipX, indexTipY, box6.x, box6.y);
-        let dbox7 = dist(indexTipX, indexTipY, box7.x, box7.y);
-        let dbox8 = dist(indexTipX, indexTipY, box8.x, box8.y);
-        let dbox9 = dist(indexTipX, indexTipY, box9.x, box9.y);
-        //if distance is less than 25px, you can select the box with index
-        if (dbox1 < 25) {
-            currentBirb = 0;
-            //if thumb and index are touching, you can drag the box
-            if (d < 25) {
-                box1.x = indexTipX;
-                box1.y = indexTipY;
-            }
-        }
-        //same thing with other boxes
-        if (dbox2 < 25) {
-            currentBirb = 1;
-            if (d < 25) {
-                box2.x = indexTipX;
-                box2.y = indexTipY;
-            }
-        }
-        if (dbox3 < 25) {
-            currentBirb = 2;
-            if (d < 25) {
-                box3.x = indexTipX;
-                box3.y = indexTipY;
-            }
-        }
-        if (dbox4 < 25) {
-            currentBirbBg = 0;
-            if (d < 25) {
-                box4.x = indexTipX;
-                box4.y = indexTipY;
-            }
-        }
-        if (dbox5 < 25) {
-            currentBirbBg = 1;
-            if (d < 25) {
-                box5.x = indexTipX;
-                box5.y = indexTipY;
-            }
-        }
-        if (dbox6 < 25) {
-            currentBirbBg = 2;
-            if (d < 25) {
-                box6.x = indexTipX;
-                box6.y = indexTipY;
-            }
-        }
-        if (dbox7 < 25) {
-            currentFrame = 0;
-            if (d < 25) {
-                box7.x = indexTipX;
-                box7.y = indexTipY;
-            }
-        }
-        if (dbox8 < 25) {
-            currentFrame = 1;
-            if (d < 25) {
-                box8.x = indexTipX;
-                box8.y = indexTipY;
-            }
-        }
-        if (dbox9 < 25) {
-            currentFrame = 2;
-            if (d < 25) {
-                box9.x = indexTipX;
-                box9.y = indexTipY;
-            }
-        }
-
-        //distance btw index and all accessories
-        let dacc1 = dist(indexTipX, indexTipY, acc1.x, acc1.y);
-        let dacc2 = dist(indexTipX, indexTipY, acc2.x, acc2.y);
-        let dacc3 = dist(indexTipX, indexTipY, acc3.x, acc3.y);
-        let dacc4 = dist(indexTipX, indexTipY, acc4.x, acc4.y);
-        let dacc5 = dist(indexTipX, indexTipY, acc5.x, acc5.y);
-        let dacc6 = dist(indexTipX, indexTipY, acc6.x, acc6.y);
-        let dacc7 = dist(indexTipX, indexTipY, acc7.x, acc7.y);
-        let dacc8 = dist(indexTipX, indexTipY, acc8.x, acc8.y);
-
-        //making all accessories draggable
-        if (d < 25 && dacc1 < 50) {
-            acc1.x = indexTipX;
-            acc1.y = indexTipY;
-        }
-        if (d < 25 && dacc2 < 50) {
-            acc2.x = indexTipX;
-            acc2.y = indexTipY;
-        }
-        if (d < 25 && dacc3 < 50) {
-            acc3.x = indexTipX;
-            acc3.y = indexTipY;
-        }
-        if (d < 25 && dacc4 < 50) {
-            acc4.x = indexTipX;
-            acc4.y = indexTipY;
-        }
-        if (d < 25 && dacc5 < 50) {
-            acc5.x = indexTipX;
-            acc5.y = indexTipY;
-        }
-        if (d < 25 && dacc6 < 50) {
-            acc6.x = indexTipX;
-            acc6.y = indexTipY;
-        }
-        if (d < 25 && dacc7 < 50) {
-            acc7.x = indexTipX;
-            acc7.y = indexTipY;
-        }
-        if (d < 25 && dacc8 < 50) {
-            acc8.x = indexTipX;
-            acc8.y = indexTipY;
-        }
-
-        //display of the index cursor
-        push();
-        noStroke();
-        fill(200, 0, 100);
-        circle(indexCursor.x, indexCursor.y, indexCursor.size);
-        pop();
-
-        //display of the thumb cursor
-        push();
-        noStroke();
-        fill(0, 0, 255);
-        circle(thumbTipX, thumbTipY, 25);
-        pop();
-    }
 
     //display of boxes + accessories
     push();
@@ -501,5 +373,258 @@ function draw() {
     image(acc8Img, acc8.x, acc8.y);
     pop();
 
+    if (state === 'title') {
+        title();
+      }
+      else if (state === 'simulation') {
+        simulation();
+      }
+      else if (state === 'ending') {
+        ending();
+      }
 
+
+}
+
+function title() {
+
+    push();
+    noStroke();
+    blendMode(MULTIPLY);
+    fill(200);
+    rectMode(CENTER);
+    rect(width/2, height/2, 800);
+    pop();
+
+    textAlign(CENTER, CENTER);
+    fill(255);
+
+    push();
+    textSize(25);
+    text('Tiny Birb Maker', width/2+10, 15);
+    pop();
+
+    push();
+    textSize(15);
+    text('Select options by pointing to them with your index finger', 225, 455);
+    text('Drag accessories to your birb by pinching them with your index and thumb and moving them', width/2, 355);
+    text('Red cursor represents the index tip', width/2, 65);
+    text('Blue cursor represents the thumb tip', width/2, 90);
+    pop();
+
+    push();
+    textSize(20);
+    text('Click to start', width/2, 300);
+    pop();
+
+}
+
+function mousePressed() {
+    if (state === 'title') {
+        state = 'simulation'
+    }
+}
+
+function simulation() {
+
+        //all interactivity is here
+        if (predictions.length > 0) {
+            let hand = predictions[0];
+            //variables for the index finger
+            let index = hand.annotations.indexFinger;
+            let indexTip = index[3];
+            let indexTipX = indexTip[0];
+            let indexTipY = indexTip[1];
+            //variables for the thumb
+            let thumb = hand.annotations.thumb;
+            let thumbTip = thumb[3];
+            let thumbTipX = thumbTip[0];
+            let thumbTipY = thumbTip[1];
+            //distance btw index and thumb
+            //(used to check if the thumb and index are touching over the object)
+            let d = dist(indexTipX, indexTipY, thumbTipX, thumbTipY);
+    
+            //setting the coordinates of the index cursor + thumb cursor
+            indexCursor.x = indexTipX;
+            indexCursor.y = indexTipY;
+            thumbCursor.x = thumbTipX;
+            thumbCursor.y = thumbTipY;
+            
+            //checking the dist btw index and all boxes
+            let dbox1 = dist(indexTipX, indexTipY, box1.x, box1.y);
+            let dbox2 = dist(indexTipX, indexTipY, box2.x, box2.y);
+            let dbox3 = dist(indexTipX, indexTipY, box3.x, box3.y);
+            let dbox4 = dist(indexTipX, indexTipY, box4.x, box4.y);
+            let dbox5 = dist(indexTipX, indexTipY, box5.x, box5.y);
+            let dbox6 = dist(indexTipX, indexTipY, box6.x, box6.y);
+            let dbox7 = dist(indexTipX, indexTipY, box7.x, box7.y);
+            let dbox8 = dist(indexTipX, indexTipY, box8.x, box8.y);
+            let dbox9 = dist(indexTipX, indexTipY, box9.x, box9.y);
+            //if distance is less than 25px, you can select the box with index
+            if (dbox1 < 25) {
+                currentBirb = 0;
+                //if thumb and index are touching, you can drag the box
+                if (d < 25) {
+                    box1.x = indexTipX;
+                    box1.y = indexTipY;
+                }
+            }
+            //same thing with other boxes
+            if (dbox2 < 25) {
+                currentBirb = 1;
+                if (d < 25) {
+                    box2.x = indexTipX;
+                    box2.y = indexTipY;
+                }
+            }
+            if (dbox3 < 25) {
+                currentBirb = 2;
+                if (d < 25) {
+                    box3.x = indexTipX;
+                    box3.y = indexTipY;
+                }
+            }
+            if (dbox4 < 25) {
+                currentBirbBg = 0;
+                if (d < 25) {
+                    box4.x = indexTipX;
+                    box4.y = indexTipY;
+                }
+            }
+            if (dbox5 < 25) {
+                currentBirbBg = 1;
+                if (d < 25) {
+                    box5.x = indexTipX;
+                    box5.y = indexTipY;
+                }
+            }
+            if (dbox6 < 25) {
+                currentBirbBg = 2;
+                if (d < 25) {
+                    box6.x = indexTipX;
+                    box6.y = indexTipY;
+                }
+            }
+            if (dbox7 < 25) {
+                currentFrame = 0;
+                if (d < 25) {
+                    box7.x = indexTipX;
+                    box7.y = indexTipY;
+                }
+            }
+            if (dbox8 < 25) {
+                currentFrame = 1;
+                if (d < 25) {
+                    box8.x = indexTipX;
+                    box8.y = indexTipY;
+                }
+            }
+            if (dbox9 < 25) {
+                currentFrame = 2;
+                if (d < 25) {
+                    box9.x = indexTipX;
+                    box9.y = indexTipY;
+                }
+            }
+    
+            //distance btw index and all accessories
+            let dacc1 = dist(indexTipX, indexTipY, acc1.x, acc1.y);
+            let dacc2 = dist(indexTipX, indexTipY, acc2.x, acc2.y);
+            let dacc3 = dist(indexTipX, indexTipY, acc3.x, acc3.y);
+            let dacc4 = dist(indexTipX, indexTipY, acc4.x, acc4.y);
+            let dacc5 = dist(indexTipX, indexTipY, acc5.x, acc5.y);
+            let dacc6 = dist(indexTipX, indexTipY, acc6.x, acc6.y);
+            let dacc7 = dist(indexTipX, indexTipY, acc7.x, acc7.y);
+            let dacc8 = dist(indexTipX, indexTipY, acc8.x, acc8.y);
+    
+            //making all accessories draggable
+            if (d < 25 && dacc1 < 50) {
+                acc1.x = indexTipX;
+                acc1.y = indexTipY;
+            }
+            if (d < 25 && dacc2 < 50) {
+                acc2.x = indexTipX;
+                acc2.y = indexTipY;
+            }
+            if (d < 25 && dacc3 < 50) {
+                acc3.x = indexTipX;
+                acc3.y = indexTipY;
+            }
+            if (d < 25 && dacc4 < 50) {
+                acc4.x = indexTipX;
+                acc4.y = indexTipY;
+            }
+            if (d < 25 && dacc5 < 50) {
+                acc5.x = indexTipX;
+                acc5.y = indexTipY;
+            }
+            if (d < 25 && dacc6 < 50) {
+                acc6.x = indexTipX;
+                acc6.y = indexTipY;
+            }
+            if (d < 25 && dacc7 < 50) {
+                acc7.x = indexTipX;
+                acc7.y = indexTipY;
+            }
+            if (d < 25 && dacc8 < 50) {
+                acc8.x = indexTipX;
+                acc8.y = indexTipY;
+            }
+
+            //checking the distance between the index and confirm button
+            let dconf = dist(indexTipX, indexTipY, confirmButt.x, confirmButt.y);
+            if (dconf < 25) {
+                state = 'ending'
+            }
+
+            let dframe = dist(indexTipX, indexTipY, framePos.x, framePos.y);
+            if (dframe < 25 && d < 25) {
+                framePos.x = indexTipX;
+                framePos.y = indexTipY;
+            }
+
+            let dbgb = dist(indexTipX, indexTipY, birbBgPos.x, birbBgPos.y);
+            if (dbgb < 25 && d < 25) {
+                birbBgPos.x = indexTipX;
+                birbBgPos.y = indexTipY;
+            }
+
+            let dbirb = dist(indexTipX, indexTipY, birbs.x, birbs.y);
+            if (dbirb < 25 && d < 25) {
+                birbs.x = indexTipX;
+                birbs.y = indexTipY;
+            }
+
+            let dbg = dist(indexTipX, indexTipY, bg.x, bg.y);
+            if (dbg < 25 && d < 25) {
+                bg.x = indexTipX;
+                bg.y = indexTipY;
+            }
+    
+            //display of the index cursor
+            push();
+            noStroke();
+            fill(200, 0, 100);
+            circle(indexCursor.x, indexCursor.y, indexCursor.size);
+            pop();
+    
+            //display of the thumb cursor
+            push();
+            noStroke();
+            fill(0, 0, 255);
+            circle(thumbTipX, thumbTipY, 25);
+            pop();
+        }  
+}
+
+function ending() {
+    //adding rectangles over everything but the frame to give the effect of an empty bg
+    push();
+    rectMode(CENTER);
+    noStroke();
+    rect(67, height/2, 200, 800);
+    rect(width/2, 443, 800, 200);
+    rect(583, height/2, 200, 800);
+    rect(width/2, -23, 800, 100);
+    pop();
 }
