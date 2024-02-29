@@ -357,7 +357,7 @@ function draw() {
             else if (currentBirb === 2) {
                 push();
                 imageMode(CENTER);
-                image(birb3Img, birb.x, birbs.y);
+                image(birb3Img, birbs.x, birbs.y);
                 pop();
             }
 
