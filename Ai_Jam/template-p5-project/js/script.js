@@ -20,9 +20,6 @@ let handpose = undefined;
 //current set of predictions
 let predictions = [];
 
-//temporary img
-// let scissorsImg;
-
 let cursor = {
     x: undefined,
     y: undefined,
@@ -35,17 +32,106 @@ let test = {
     size: 200
 };
 
-//an array to store all the draggable items   
-let items = [
+
+//list of accessories + draggable elements
+let accessories = [
+    'sunglasses',
+    'glasses',
+    'necklace',
+    'tie',
+    'bow',
+    'scarf',
+    'hat',
+    'sprout',
+    'box1',
+    'box2',
+    'box3',
+    'box4',
+    'box5',
+    'box6',
+    'box7',
+    'box8',
+    'box9'
 ]
+
+//birb types to choose from
+let birb = [
+    'sparrow',
+    'canary',
+    'finch'
+]
+//keeps track of what the birb shown is
+let currentBirb = 0;
+
+//backgrounds to choose from
+let birbBg = [
+    'winter',
+    'summer',
+    'sunset'
+]
+
+//keeps track of what the current bg is
+let currentBirbBg = 0;
+
+//image frames to choose from
+let frame = [
+    'black',
+    'brown',
+    'pink'
+]
+
+//keeps track of the current frame chosen
+let currentFrame = 0;
+
+//ui assets
+let box1Img;
+let box2Img;
+let box3Img;
+let box4Img;
+let box5Img;
+let box6Img;
+let box7Img;
+let box8Img;
+let box9Img;
+let bgImg;
+let confirmImg;
+let birb1Img;
+let birb2Img;
+let birb3Img;
+let birbBg1Img;
+let birbBg2Img;
+let birbBg3Img;
+let frame1Img;
+let frame2Img;
+let frame3Img;
+
 
 
 /**
 Description of preload
 */
 function preload() {
-    // scissorsImg = loadImage('assets/images/scissors.png');
 
+    bgImg = loadImage('assets/images/bg.png');
+    confirmImg = loadImage('assets/images/confirm.png');
+    box1Img = loadImage('assets/images/b1.png');
+    box2Img = loadImage('assets/images/b2.png');
+    box3Img = loadImage('assets/images/b3.png');
+    box4Img = loadImage('assets/images/b4.png');
+    box5Img = loadImage('assets/images/b5.png');
+    box6Img = loadImage('assets/images/b6.png');
+    box7Img = loadImage('assets/images/b7.png');
+    box8Img = loadImage('assets/images/b8.png');
+    box9Img = loadImage('assets/images/b9.png');
+    birb1Img = loadImage('assets/images/bi1.png');
+    birb2Img = loadImage('assets/images/bi2.png');
+    birb3Img = loadImage('assets/images/bi3.png');
+    birbBg1Img = loadImage('assets/images/bg1.png');
+    birbBg2Img = loadImage('assets/images/bg2.png');
+    birbBg3Img = loadImage('assets/images/bg3.png');
+    frame1Img = loadImage('assets/images/f1.png');
+    frame2Img = loadImage('assets/images/f2.png');
+    frame3Img = loadImage('assets/images/f3.png');
 }
 
 
@@ -82,6 +168,46 @@ Description of draw()
 */
 function draw() {
     background(100);
+
+    push();
+    imageMode(CENTER);
+    image(bgImg, width/2, height/2);
+    image(confirmImg, 800, 950);
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(box1Img, 100, 825);
+    image(box2Img, 200, 825);
+    image(box3Img, 300, 825);
+    image(box4Img, 400, 825);
+    image(box5Img, 500, 825);
+    image(box6Img, 600, 825);
+    image(box7Img, 700, 825);
+    image(box8Img, 800, 825);
+    image(box9Img, 900, 825);
+    pop();
+
+    if(currentFrame === 0) {
+        push();
+        imageMode(CENTER);
+        image(frame1Img, 510, 385);
+        pop();
+    }
+
+    if (currentBirbBg === 0) {
+        push();
+        imageMode(CENTER);
+        image(birbBg1Img, 510, 385);
+        pop();
+    }
+
+    if (currentBirb === 0) {
+        push();
+        imageMode(CENTER);
+        image(birb1Img, 545, 400);
+        pop();
+    }
 
     fill(0);
     circle(test.x, test.y, test.size);
