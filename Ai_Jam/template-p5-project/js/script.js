@@ -23,7 +23,7 @@ let predictions = [];
 let cursor = {
     x: undefined,
     y: undefined,
-    size: 50
+    size: 25
 };
 
 let test = {
@@ -217,7 +217,7 @@ function draw() {
     push();
     imageMode(CENTER);
     image(bgImg, width/2, height/2);
-    image(confirmImg, 800, 950);
+    image(confirmImg, 510, 455);
     pop();
 
     push();
@@ -331,30 +331,66 @@ function draw() {
         let dbox9 = dist(indexTipX, indexTipY, box9.x, box9.y);
         if (dbox1 < 25) {
             currentBirb = 0;
+            if (d < 25) {
+                box1.x = indexTipX;
+                box1.y = indexTipY;
+            }
         }
         if (dbox2 < 25) {
             currentBirb = 1;
+            if (d < 25) {
+                box2.x = indexTipX;
+                box2.y = indexTipY;
+            }
         }
         if (dbox3 < 25) {
             currentBirb = 2;
+            if (d < 25) {
+                box3.x = indexTipX;
+                box3.y = indexTipY;
+            }
         }
         if (dbox4 < 25) {
             currentBirbBg = 0;
+            if (d < 25) {
+                box4.x = indexTipX;
+                box4.y = indexTipY;
+            }
         }
         if (dbox5 < 25) {
             currentBirbBg = 1;
+            if (d < 25) {
+                box5.x = indexTipX;
+                box5.y = indexTipY;
+            }
         }
         if (dbox6 < 25) {
             currentBirbBg = 2;
+            if (d < 25) {
+                box6.x = indexTipX;
+                box6.y = indexTipY;
+            }
         }
         if (dbox7 < 25) {
             currentFrame = 0;
+            if (d < 25) {
+                box7.x = indexTipX;
+                box7.y = indexTipY;
+            }
         }
         if (dbox8 < 25) {
             currentFrame = 1;
+            if (d < 25) {
+                box8.x = indexTipX;
+                box8.y = indexTipY;
+            }
         }
         if (dbox9 < 25) {
             currentFrame = 2;
+            if (d < 25) {
+                box9.x = indexTipX;
+                box9.y = indexTipY;
+            }
         }
         push();
         noStroke();
@@ -363,7 +399,7 @@ function draw() {
         pop();
 
         fill(0, 0, 255);
-        circle(thumbTipX, thumbTipY, 50);
+        circle(thumbTipX, thumbTipY, 25);
     }
 
 }
