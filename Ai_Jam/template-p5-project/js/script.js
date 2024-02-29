@@ -214,6 +214,7 @@ let confettiGif;
 let bgm;
 let fartSFX;
 
+//checking if the fart sfx got played, so it only gets played once
 let fartPlayed = false;
 
 
@@ -254,6 +255,7 @@ function preload() {
     acc8Img = loadImage('assets/images/a8.png');
     confettiGif = loadImage('assets/images/giphy.gif');
 
+    //loading the sounds
     bgm = loadSound('assets/sounds/bgm.mp3');
     fartSFX = loadSound('assets/sounds/reverb.mp3');
 }
@@ -381,6 +383,7 @@ function draw() {
     image(acc8Img, acc8.x, acc8.y);
     pop();
 
+    //states
     if (state === 'title') {
         title();
       }
@@ -396,6 +399,7 @@ function draw() {
 
 function title() {
 
+    //shade over screen
     push();
     noStroke();
     blendMode(MULTIPLY);
@@ -407,6 +411,7 @@ function title() {
     textAlign(CENTER, CENTER);
     fill(255);
 
+    //title screen text
     push();
     textSize(25);
     text('Tiny Birb Maker', width/2+10, 15);
@@ -428,6 +433,7 @@ function title() {
 }
 
 function mousePressed() {
+    //click the mouse to enter game
     if (state === 'title') {
         state = 'simulation'
     }
@@ -597,24 +603,28 @@ function simulation() {
                     }
             }
 
+            //checking the distance between the index and frame + making it draggable
             let dframe = dist(indexTipX, indexTipY, framePos.x, framePos.y);
             if (dframe < 25 && d < 25) {
                 framePos.x = indexTipX;
                 framePos.y = indexTipY;
             }
 
+            //checking the distance between the index and birb bg + making it draggable
             let dbgb = dist(indexTipX, indexTipY, birbBgPos.x, birbBgPos.y);
             if (dbgb < 25 && d < 25) {
                 birbBgPos.x = indexTipX;
                 birbBgPos.y = indexTipY;
             }
 
+            //checking the distance between the index and birb + making it draggable
             let dbirb = dist(indexTipX, indexTipY, birbs.x, birbs.y);
             if (dbirb < 25 && d < 25) {
                 birbs.x = indexTipX;
                 birbs.y = indexTipY;
             }
 
+            //checking the distance between the index and ui bg + making it draggable
             let dbg = dist(indexTipX, indexTipY, bg.x, bg.y);
             if (dbg < 25 && d < 25) {
                 bg.x = indexTipX;
@@ -648,11 +658,13 @@ function ending() {
     rect(width/2, -23, 800, 100);
     pop();
 
+    //confetti gif
     push();
     imageMode(CENTER);
     image(confettiGif, width/2, height/2-50);
     pop();
 
+    //ending screen text
     push();
     textSize(25);
     fill(0);
