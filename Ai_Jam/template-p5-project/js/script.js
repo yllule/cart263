@@ -4,11 +4,6 @@ Catherine Zaloshnja
 This is a dumpster fire with lots of repetitive code. There was likely a better way to make this but hey this way works and it doesn't hurt my brain as much:)
 */
 
-
-//notes to self
-//add bgm
-//end : add white bg over everything minus frame content, reverb fart sound effect, confetti gif?
-
 "use strict";
 
 let state = 'title' //can be title, simulation, ending
@@ -212,6 +207,15 @@ let acc6Img;
 let acc7Img;
 let acc8Img;
 
+//confetti gif
+let confettiGif;
+
+//sound assets
+let bgm;
+let fartSFX;
+
+let fartPlayed = false;
+
 
 
 /**
@@ -248,6 +252,10 @@ function preload() {
     acc6Img = loadImage('assets/images/a6.png');
     acc7Img = loadImage('assets/images/a7.png');
     acc8Img = loadImage('assets/images/a8.png');
+    confettiGif = loadImage('assets/images/giphy.gif');
+
+    bgm = loadSound('assets/sounds/bgm.mp3');
+    fartSFX = loadSound('assets/sounds/reverb.mp3');
 }
 
 
@@ -427,6 +435,12 @@ function mousePressed() {
 
 function simulation() {
 
+        //bgm playing
+        if (!bgm.isPlaying()) {
+        bgm.setVolume(0.03);
+        bgm.loop();
+        }
+
         //all interactivity is here
         if (predictions.length > 0) {
             let hand = predictions[0];
@@ -575,6 +589,12 @@ function simulation() {
             let dconf = dist(indexTipX, indexTipY, confirmButt.x, confirmButt.y);
             if (dconf < 25) {
                 state = 'ending'
+                    //fart playing
+                    if(!fartPlayed) {
+                        fartSFX.setVolume(0.5);
+                        fartSFX.play();
+                        fartPlayed = true;
+                    }
             }
 
             let dframe = dist(indexTipX, indexTipY, framePos.x, framePos.y);
@@ -626,5 +646,23 @@ function ending() {
     rect(width/2, 443, 800, 200);
     rect(583, height/2, 200, 800);
     rect(width/2, -23, 800, 100);
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(confettiGif, width/2, height/2-50);
+    pop();
+
+    push();
+    textSize(25);
+    fill(0);
+    text('Thanks for playing :)', width/2+10, 400);
+    pop();
+
+    push();
+    textSize(15);
+    fill(0);
+    text('Audio by TV_LING and SciCodeDev on Freesound', width/2+10, 450);
+    text('Confetti GIF by Chris on GIPHY', width/2+10, 475);
     pop();
 }
