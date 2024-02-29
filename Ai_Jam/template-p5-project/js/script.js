@@ -1,13 +1,15 @@
 /**
 Tiny birb maker
 Catherine Zaloshnja
+This is a dumpster fire with lots of repetitive code. There was likely a better way to make this but hey this way works and it doesn't hurt my brain as much:)
 */
 
-//notes to self :
 
-//2- add different draggable items
-//4- add states (tutorial/customization/confirm)
-
+//notes to self
+//-states
+//tutorial : instruction (touch index to thumb to drag, point with index to select), start button (click?)
+//add bgm
+//end : add white bg over everything minus frame content, yipee sound effect, confetti gif?
 
 "use strict";
 
@@ -17,11 +19,19 @@ let handpose = undefined;
 //current set of predictions
 let predictions = [];
 
-let cursor = {
+//variables for the index cursor
+let indexCursor = {
     x: undefined,
     y: undefined,
     size: 25
 };
+
+//variables for the thumb cursor
+let thumbCursor = {
+    x: undefined,
+    y: undefined,
+    size: 25
+}
 
 //birb types to choose from
 let birb = [
@@ -29,6 +39,7 @@ let birb = [
     'canary',
     'finch'
 ]
+
 //keeps track of what the birb shown is
 let currentBirb = 0;
 
@@ -52,6 +63,9 @@ let frame = [
 //keeps track of the current frame chosen
 let currentFrame = 0;
 
+
+//variables for the position of each box
+//*is necessary to make them draggable + selectable
 let box1 = {
     x:75,
     y:395
@@ -97,6 +111,7 @@ let box9 = {
     y:395
 };
 
+//variables for the positions of each accessory
 let acc1 = {
     x:50,
     y:50
@@ -137,7 +152,7 @@ let acc8 = {
     y:325
 }
 
-//ui assets
+//assets
 let box1Img;
 let box2Img;
 let box3Img;
@@ -174,6 +189,7 @@ Description of preload
 */
 function preload() {
 
+    //loading all my images
     bgImg = loadImage('assets/images/bg.png');
     confirmImg = loadImage('assets/images/confirm.png');
     box1Img = loadImage('assets/images/b1.png');
@@ -209,9 +225,10 @@ function preload() {
 Description of setup
 */
 function setup() {
+    //making the canvas size match the video capture size
     createCanvas(640,480);
 
-    //access the user's webcam
+    //access the user's webcam + hide it
     video = createCapture(VIDEO);
     video.hide();
 
@@ -236,12 +253,14 @@ Description of draw()
 function draw() {
     background(100);
 
+    //display of bg image + confirm button
     push();
     imageMode(CENTER);
     image(bgImg, width/2, height/2);
     image(confirmImg, 510, 455);
     pop();
 
+    //display of what frame is shown depending on user's choice
     if(currentFrame === 0) {
         push();
         imageMode(CENTER);
@@ -261,6 +280,7 @@ function draw() {
                 pop();
             }
 
+    //displays the background chosen by the user
     if (currentBirbBg === 0) {
         push();
         imageMode(CENTER);
@@ -280,7 +300,7 @@ function draw() {
                 pop();
             }
 
-
+    //displays the birb chosen by the user
     if (currentBirb === 0) {
         push();
         imageMode(CENTER);
@@ -300,6 +320,7 @@ function draw() {
                 pop();
             }
 
+    //all interactivity is here
     if (predictions.length > 0) {
         let hand = predictions[0];
         //variables for the index finger
@@ -312,14 +333,17 @@ function draw() {
         let thumbTip = thumb[3];
         let thumbTipX = thumbTip[0];
         let thumbTipY = thumbTip[1];
-        //distance btw index and thumb and distance between thumb and object
+        //distance btw index and thumb
         //(used to check if the thumb and index are touching over the object)
         let d = dist(indexTipX, indexTipY, thumbTipX, thumbTipY);
 
-        //setting the coordinates of the index cursor
-        cursor.x = indexTipX;
-        cursor.y = indexTipY;
+        //setting the coordinates of the index cursor + thumb cursor
+        indexCursor.x = indexTipX;
+        indexCursor.y = indexTipY;
+        thumbCursor.x = thumbTipX;
+        thumbCursor.y = thumbTipY;
         
+        //checking the dist btw index and all boxes
         let dbox1 = dist(indexTipX, indexTipY, box1.x, box1.y);
         let dbox2 = dist(indexTipX, indexTipY, box2.x, box2.y);
         let dbox3 = dist(indexTipX, indexTipY, box3.x, box3.y);
@@ -329,13 +353,16 @@ function draw() {
         let dbox7 = dist(indexTipX, indexTipY, box7.x, box7.y);
         let dbox8 = dist(indexTipX, indexTipY, box8.x, box8.y);
         let dbox9 = dist(indexTipX, indexTipY, box9.x, box9.y);
+        //if distance is less than 25px, you can select the box with index
         if (dbox1 < 25) {
             currentBirb = 0;
+            //if thumb and index are touching, you can drag the box
             if (d < 25) {
                 box1.x = indexTipX;
                 box1.y = indexTipY;
             }
         }
+        //same thing with other boxes
         if (dbox2 < 25) {
             currentBirb = 1;
             if (d < 25) {
@@ -393,6 +420,7 @@ function draw() {
             }
         }
 
+        //distance btw index and all accessories
         let dacc1 = dist(indexTipX, indexTipY, acc1.x, acc1.y);
         let dacc2 = dist(indexTipX, indexTipY, acc2.x, acc2.y);
         let dacc3 = dist(indexTipX, indexTipY, acc3.x, acc3.y);
@@ -401,6 +429,8 @@ function draw() {
         let dacc6 = dist(indexTipX, indexTipY, acc6.x, acc6.y);
         let dacc7 = dist(indexTipX, indexTipY, acc7.x, acc7.y);
         let dacc8 = dist(indexTipX, indexTipY, acc8.x, acc8.y);
+
+        //making all accessories draggable
         if (d < 25 && dacc1 < 50) {
             acc1.x = indexTipX;
             acc1.y = indexTipY;
@@ -433,16 +463,23 @@ function draw() {
             acc8.x = indexTipX;
             acc8.y = indexTipY;
         }
+
+        //display of the index cursor
         push();
         noStroke();
-        fill(255, 0, 0);
-        circle(cursor.x, cursor.y, cursor.size);
+        fill(200, 0, 100);
+        circle(indexCursor.x, indexCursor.y, indexCursor.size);
         pop();
 
+        //display of the thumb cursor
+        push();
+        noStroke();
         fill(0, 0, 255);
         circle(thumbTipX, thumbTipY, 25);
+        pop();
     }
 
+    //display of boxes + accessories
     push();
     imageMode(CENTER);
     image(box1Img, box1.x, box1.y);
