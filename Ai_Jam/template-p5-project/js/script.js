@@ -6,9 +6,9 @@ Catherine Zaloshnja
 //notes to self :
 //1- make it possible to drag a circle by touching thumb + index
 //3- make ui/assets
+//3- make it possible to change "settings" (ex:filters, colors) by pointing with index
 
 //2- add different draggable items
-//3- make it possible to change "settings" (ex:filters, colors) by pointing with index
 //4- add states (tutorial/customization/confirm)
 
 
@@ -29,7 +29,7 @@ let cursor = {
 let test = {
     x: undefined,
     y: undefined,
-    size: 200
+    size: 100
 };
 
 
@@ -82,6 +82,51 @@ let frame = [
 
 //keeps track of the current frame chosen
 let currentFrame = 0;
+
+let box1 = {
+    x:75,
+    y:395
+};
+
+let box2 = {
+    x:135,
+    y:395
+};
+
+let box3 = {
+    x:195,
+    y:395
+};
+
+let box4 = {
+    x:255,
+    y:395
+};
+
+let box5 = {
+    x:315,
+    y:395
+};
+
+let box6 = {
+    x:375,
+    y:395
+};
+
+let box7 = {
+    x:435,
+    y:395
+};
+
+let box8 = {
+    x:495,
+    y:395
+};
+
+let box9 = {
+    x:555,
+    y:395
+};
 
 //ui assets
 let box1Img;
@@ -139,7 +184,7 @@ function preload() {
 Description of setup
 */
 function setup() {
-    createCanvas(1000,1000);
+    createCanvas(640,480);
 
     //access the user's webcam
     video = createCapture(VIDEO);
@@ -177,37 +222,74 @@ function draw() {
 
     push();
     imageMode(CENTER);
-    image(box1Img, 100, 825);
-    image(box2Img, 200, 825);
-    image(box3Img, 300, 825);
-    image(box4Img, 400, 825);
-    image(box5Img, 500, 825);
-    image(box6Img, 600, 825);
-    image(box7Img, 700, 825);
-    image(box8Img, 800, 825);
-    image(box9Img, 900, 825);
+    image(box1Img, box1.x, box1.y);
+    image(box2Img, box2.x, box2.y);
+    image(box3Img, box3.x, box3.y);
+    image(box4Img, box4.x, box4.y);
+    image(box5Img, box5.x, box5.y);
+    image(box6Img, box6.x, box6.y);
+    image(box7Img, box7.x, box7.y);
+    image(box8Img, box8.x, box8.y);
+    image(box9Img, box9.x, box9.y);
     pop();
 
     if(currentFrame === 0) {
         push();
         imageMode(CENTER);
-        image(frame1Img, 510, 385);
+        image(frame1Img, 325, 185);
         pop();
     }
+        else if (currentFrame === 1) {
+            push();
+            imageMode(CENTER);
+            image(frame2Img, 325, 185);
+            pop();
+        }
+            else if (currentFrame === 2) {
+                push();
+                imageMode(CENTER);
+                image(frame3Img, 325, 185);
+                pop();
+            }
 
     if (currentBirbBg === 0) {
         push();
         imageMode(CENTER);
-        image(birbBg1Img, 510, 385);
+        image(birbBg1Img, 325, 185);
         pop();
     }
+        else if (currentBirbBg === 1) {
+            push();
+            imageMode(CENTER);
+            image(birbBg2Img, 325, 185);
+            pop();
+        }
+            else if (currentBirbBg === 2) {
+                push();
+                imageMode(CENTER);
+                image(birbBg3Img, 325, 185);
+                pop();
+            }
+
 
     if (currentBirb === 0) {
         push();
         imageMode(CENTER);
-        image(birb1Img, 545, 400);
+        image(birb1Img, 340, 185);
         pop();
     }
+        else if (currentBirb === 1) {
+            push();
+            imageMode(CENTER);
+            image(birb2Img, 340, 185);
+            pop();
+        }
+            else if (currentBirb === 2) {
+                push();
+                imageMode(CENTER);
+                image(birb3Img, 340, 185);
+                pop();
+            }
 
     fill(0);
     circle(test.x, test.y, test.size);
@@ -237,6 +319,42 @@ function draw() {
             console.log('touching tips');
             test.x = indexTipX;
             test.y = indexTipY;
+        }
+        let dbox1 = dist(indexTipX, indexTipY, box1.x, box1.y);
+        let dbox2 = dist(indexTipX, indexTipY, box2.x, box2.y);
+        let dbox3 = dist(indexTipX, indexTipY, box3.x, box3.y);
+        let dbox4 = dist(indexTipX, indexTipY, box4.x, box4.y);
+        let dbox5 = dist(indexTipX, indexTipY, box5.x, box5.y);
+        let dbox6 = dist(indexTipX, indexTipY, box6.x, box6.y);
+        let dbox7 = dist(indexTipX, indexTipY, box7.x, box7.y);
+        let dbox8 = dist(indexTipX, indexTipY, box8.x, box8.y);
+        let dbox9 = dist(indexTipX, indexTipY, box9.x, box9.y);
+        if (dbox1 < 25) {
+            currentBirb = 0;
+        }
+        if (dbox2 < 25) {
+            currentBirb = 1;
+        }
+        if (dbox3 < 25) {
+            currentBirb = 2;
+        }
+        if (dbox4 < 25) {
+            currentBirbBg = 0;
+        }
+        if (dbox5 < 25) {
+            currentBirbBg = 1;
+        }
+        if (dbox6 < 25) {
+            currentBirbBg = 2;
+        }
+        if (dbox7 < 25) {
+            currentFrame = 0;
+        }
+        if (dbox8 < 25) {
+            currentFrame = 1;
+        }
+        if (dbox9 < 25) {
+            currentFrame = 2;
         }
         push();
         noStroke();
