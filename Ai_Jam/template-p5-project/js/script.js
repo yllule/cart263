@@ -1,12 +1,9 @@
 /**
-Birb boudoir
+Tiny birb maker
 Catherine Zaloshnja
 */
 
 //notes to self :
-//1- make it possible to drag a circle by touching thumb + index
-//3- make ui/assets
-//3- make it possible to change "settings" (ex:filters, colors) by pointing with index
 
 //2- add different draggable items
 //4- add states (tutorial/customization/confirm)
@@ -25,34 +22,6 @@ let cursor = {
     y: undefined,
     size: 25
 };
-
-let test = {
-    x: undefined,
-    y: undefined,
-    size: 100
-};
-
-
-//list of accessories + draggable elements
-let accessories = [
-    'sunglasses',
-    'glasses',
-    'necklace',
-    'tie',
-    'bow',
-    'scarf',
-    'hat',
-    'sprout',
-    'box1',
-    'box2',
-    'box3',
-    'box4',
-    'box5',
-    'box6',
-    'box7',
-    'box8',
-    'box9'
-]
 
 //birb types to choose from
 let birb = [
@@ -128,6 +97,46 @@ let box9 = {
     y:395
 };
 
+let acc1 = {
+    x:50,
+    y:50
+}
+
+let acc2 = {
+    x:575,
+    y:50
+}
+
+let acc3 = {
+    x:100,
+    y:125
+}
+
+let acc4 = {
+    x:550,
+    y:135
+}
+
+let acc5 = {
+    x:50,
+    y:225
+}
+
+let acc6 = {
+    x:575,
+    y:230
+}
+
+let acc7 = {
+    x:90,
+    y:315
+}
+
+let acc8 = {
+    x:530,
+    y:325
+}
+
 //ui assets
 let box1Img;
 let box2Img;
@@ -149,6 +158,14 @@ let birbBg3Img;
 let frame1Img;
 let frame2Img;
 let frame3Img;
+let acc1Img;
+let acc2Img;
+let acc3Img;
+let acc4Img;
+let acc5Img;
+let acc6Img;
+let acc7Img;
+let acc8Img;
 
 
 
@@ -177,6 +194,14 @@ function preload() {
     frame1Img = loadImage('assets/images/f1.png');
     frame2Img = loadImage('assets/images/f2.png');
     frame3Img = loadImage('assets/images/f3.png');
+    acc1Img = loadImage('assets/images/a1.png');
+    acc2Img = loadImage('assets/images/a2.png');
+    acc3Img = loadImage('assets/images/a3.png');
+    acc4Img = loadImage('assets/images/a4.png');
+    acc5Img = loadImage('assets/images/a5.png');
+    acc6Img = loadImage('assets/images/a6.png');
+    acc7Img = loadImage('assets/images/a7.png');
+    acc8Img = loadImage('assets/images/a8.png');
 }
 
 
@@ -202,9 +227,6 @@ function setup() {
         console.log(results);
         predictions = results;
     })
-
-    test.x = 200;
-    test.y = 200;
 }
 
 
@@ -218,19 +240,6 @@ function draw() {
     imageMode(CENTER);
     image(bgImg, width/2, height/2);
     image(confirmImg, 510, 455);
-    pop();
-
-    push();
-    imageMode(CENTER);
-    image(box1Img, box1.x, box1.y);
-    image(box2Img, box2.x, box2.y);
-    image(box3Img, box3.x, box3.y);
-    image(box4Img, box4.x, box4.y);
-    image(box5Img, box5.x, box5.y);
-    image(box6Img, box6.x, box6.y);
-    image(box7Img, box7.x, box7.y);
-    image(box8Img, box8.x, box8.y);
-    image(box9Img, box9.x, box9.y);
     pop();
 
     if(currentFrame === 0) {
@@ -291,9 +300,6 @@ function draw() {
                 pop();
             }
 
-    fill(0);
-    circle(test.x, test.y, test.size);
-
     if (predictions.length > 0) {
         let hand = predictions[0];
         //variables for the index finger
@@ -309,17 +315,11 @@ function draw() {
         //distance btw index and thumb and distance between thumb and object
         //(used to check if the thumb and index are touching over the object)
         let d = dist(indexTipX, indexTipY, thumbTipX, thumbTipY);
-        let d2 = dist(cursor.x, cursor.y, test.x, test.y);
 
         //setting the coordinates of the index cursor
         cursor.x = indexTipX;
         cursor.y = indexTipY;
         
-        if (d < 25 && d2 < cursor.size + test.size/2) {
-            console.log('touching tips');
-            test.x = indexTipX;
-            test.y = indexTipY;
-        }
         let dbox1 = dist(indexTipX, indexTipY, box1.x, box1.y);
         let dbox2 = dist(indexTipX, indexTipY, box2.x, box2.y);
         let dbox3 = dist(indexTipX, indexTipY, box3.x, box3.y);
@@ -392,6 +392,47 @@ function draw() {
                 box9.y = indexTipY;
             }
         }
+
+        let dacc1 = dist(indexTipX, indexTipY, acc1.x, acc1.y);
+        let dacc2 = dist(indexTipX, indexTipY, acc2.x, acc2.y);
+        let dacc3 = dist(indexTipX, indexTipY, acc3.x, acc3.y);
+        let dacc4 = dist(indexTipX, indexTipY, acc4.x, acc4.y);
+        let dacc5 = dist(indexTipX, indexTipY, acc5.x, acc5.y);
+        let dacc6 = dist(indexTipX, indexTipY, acc6.x, acc6.y);
+        let dacc7 = dist(indexTipX, indexTipY, acc7.x, acc7.y);
+        let dacc8 = dist(indexTipX, indexTipY, acc8.x, acc8.y);
+        if (d < 25 && dacc1 < 50) {
+            acc1.x = indexTipX;
+            acc1.y = indexTipY;
+        }
+        if (d < 25 && dacc2 < 50) {
+            acc2.x = indexTipX;
+            acc2.y = indexTipY;
+        }
+        if (d < 25 && dacc3 < 50) {
+            acc3.x = indexTipX;
+            acc3.y = indexTipY;
+        }
+        if (d < 25 && dacc4 < 50) {
+            acc4.x = indexTipX;
+            acc4.y = indexTipY;
+        }
+        if (d < 25 && dacc5 < 50) {
+            acc5.x = indexTipX;
+            acc5.y = indexTipY;
+        }
+        if (d < 25 && dacc6 < 50) {
+            acc6.x = indexTipX;
+            acc6.y = indexTipY;
+        }
+        if (d < 25 && dacc7 < 50) {
+            acc7.x = indexTipX;
+            acc7.y = indexTipY;
+        }
+        if (d < 25 && dacc8 < 50) {
+            acc8.x = indexTipX;
+            acc8.y = indexTipY;
+        }
         push();
         noStroke();
         fill(255, 0, 0);
@@ -401,5 +442,27 @@ function draw() {
         fill(0, 0, 255);
         circle(thumbTipX, thumbTipY, 25);
     }
+
+    push();
+    imageMode(CENTER);
+    image(box1Img, box1.x, box1.y);
+    image(box2Img, box2.x, box2.y);
+    image(box3Img, box3.x, box3.y);
+    image(box4Img, box4.x, box4.y);
+    image(box5Img, box5.x, box5.y);
+    image(box6Img, box6.x, box6.y);
+    image(box7Img, box7.x, box7.y);
+    image(box8Img, box8.x, box8.y);
+    image(box9Img, box9.x, box9.y);
+    image(acc1Img, acc1.x, acc1.y);
+    image(acc2Img, acc2.x, acc2.y);
+    image(acc3Img, acc3.x, acc3.y);
+    image(acc4Img, acc4.x, acc4.y);
+    image(acc5Img, acc5.x, acc5.y);
+    image(acc6Img, acc6.x, acc6.y);
+    image(acc7Img, acc7.x, acc7.y);
+    image(acc8Img, acc8.x, acc8.y);
+    pop();
+
 
 }
