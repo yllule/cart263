@@ -13,7 +13,12 @@ class Play extends Phaser.Scene {
 
         //add background image
         // this.bg = this.add.image(this.width/2, this.height/2, 'bg');
-        this.add.image(0,0, 'bg').setOrigin(0);
+        this.bg = this.add.image(0,0, 'bg').setOrigin(0);
+        this.bg.setPipeline('Light2D');
+
+        //enable lights (create spotlight) and set a dark ambient color
+        this.light = this.lights.addLight(100,80,200).setColor(0xffffff).setIntensity(2);
+        this.lights.enable().setAmbientColor(0x555555);
 
         this.cameras.main.setBounds(0, 0, this.cameras.main, this.cameras.main);
         this.physics.world.setBounds(0, 0, 1500, 1500);
@@ -33,6 +38,10 @@ class Play extends Phaser.Scene {
 
     update() {
         this.handleInput();
+        
+        //light follows the avatar
+        this.light.x = this.avatar.x;
+        this.light.y = this.avatar.y;
     
     }
 
