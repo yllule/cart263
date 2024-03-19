@@ -8,8 +8,8 @@ Catherine Zaloshnja
 
 let config = {
     type : Phaser.AUTO,
-    width: 1500,
-    height: 250,
+    width: 700,
+    height: 700,
     physics: {
         default: `arcade`
     },
