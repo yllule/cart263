@@ -7,27 +7,26 @@ class Play extends Phaser.Scene {
 
     create() {
 
-        //width+ height variables
+        //width + height variables
         this.width = this.game.canvas.width;
         this.height = this.game.canvas.height;
 
         //add background image
-        // this.bg = this.add.image(this.width/2, this.height/2, 'bg');
-        this.bg = this.add.image(0,0, 'bg').setOrigin(0);
+        this.bg = this.add.image(2500, 2500, 'bg')
         this.bg.setPipeline('Light2D');
 
         //enable lights (create spotlight) and set a dark ambient color
-        this.light = this.lights.addLight(100,80,200).setColor(0xffffff).setIntensity(2);
+        this.light = this.lights.addLight(100,80,200).setColor(0xffffff).setIntensity(3);
         this.lights.enable().setAmbientColor(0x555555);
 
         this.cameras.main.setBounds(0, 0, this.cameras.main, this.cameras.main);
-        this.physics.world.setBounds(0, 0, 1500, 1500);
+        this.physics.world.setBounds(0, 0, 5000, 5000);
 
         //creating the minimap (first 2 variables are x+y positions)
-        this.minimap = this.cameras.add(0, 0, 0, 0).setZoom(0.15).setName('mini');
+        this.minimap = this.cameras.add(0, 0, 0, 0).setZoom(0.04).setName('mini');
 
         //create the avatar
-        this.avatar = this.physics.add.sprite(this.width/2, this.height/2, 'avatar');
+        this.avatar = this.physics.add.sprite(this.width/2, 0, 'avatar');
         this.avatar.setCollideWorldBounds(true);
 
         //make the camera follow the avatar
