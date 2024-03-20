@@ -29,6 +29,28 @@ class Play extends Phaser.Scene {
         this.avatar = this.physics.add.sprite(this.width/2, 0, 'avatar');
         this.avatar.setCollideWorldBounds(true);
 
+        this.trinkets = [
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'book'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'diamond'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'fishing'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'flower'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'fossil'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'ghost'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'glove'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'gun'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'jar'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'mushroom'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'necklace'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'note'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'photo'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'potion'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'rock'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'shard'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'sheep'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'skull'),
+            this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'sword')
+        ];
+
         //make the camera follow the avatar
         this.cameras.main.startFollow(this.avatar, true);
 
