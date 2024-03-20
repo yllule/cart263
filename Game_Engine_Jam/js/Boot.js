@@ -6,7 +6,7 @@ class Boot extends Phaser.Scene {
     }
 
     preload() {
-        //load assets here
+        //load assets
         this.load.image('bg', 'assets/images/bgtest.png');
         this.load.image('avatar', 'assets/images/clown.png');
         this.load.image('book', 'assets/images/book.png');
@@ -30,8 +30,9 @@ class Boot extends Phaser.Scene {
         this.load.image('sword', 'assets/images/sword.png');
         
 
+        //start intro when everything has loaded
         this.load.on('complete', () => {
-            this.scene.start(`play`);
+            this.scene.start(`intro`);
         })
     }
 

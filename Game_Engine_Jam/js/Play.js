@@ -13,18 +13,22 @@ class Play extends Phaser.Scene {
 
         //add background image
         this.bg = this.add.image(2500, 2500, 'bg')
+        //add lights to bg
         this.bg.setPipeline('Light2D');
 
         //enable lights (create spotlight) and set a dark ambient color
         this.light = this.lights.addLight(100,80,200).setColor(0xffffff).setIntensity(3);
         this.lights.enable().setAmbientColor(0x555555);
 
+        //add camera
         this.cameras.main.setBounds(0, 0, this.cameras.main, this.cameras.main);
+
         this.physics.world.setBounds(0, 0, 5000, 5000);
 
         //creating the minimap (first 2 variables are x+y positions)
         this.minimap = this.cameras.add(0, 0, 0, 0).setZoom(0.04).setName('mini');
 
+        //adding the collectibles
             this.book = this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'book').setInteractive(),
             this.diamond = this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'diamond').setInteractive(),
             this.fishing = this.physics.add.sprite(Math.random() * 5000, Math.random() * 5000, 'fishing').setInteractive(),
@@ -66,13 +70,13 @@ class Play extends Phaser.Scene {
         this.skull.on("pointerdown", collect)
         this.sword.on("pointerdown", collect)
 
-        //makes the items disappear (alpha = 0)
+        //makes the items disappear
         function collect() {
             this.setAlpha(0);
         }
         
         //create the avatar
-        this.avatar = this.physics.add.sprite(this.width/2, 0, 'avatar');
+        this.avatar = this.physics.add.sprite(this.width/2, this.height/2, 'avatar');
         this.avatar.setCollideWorldBounds(true);
 
         //make the camera follow the avatar
@@ -82,6 +86,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        //makes the avatar move
         this.handleInput();
         
         //light follows the avatar
@@ -91,6 +96,7 @@ class Play extends Phaser.Scene {
 
   handleInput() {
 
+    //starts off at 0
     this.avatar.setVelocity(0);
 
     //moves the avatar left if left key is down
