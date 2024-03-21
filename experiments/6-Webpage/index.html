@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Peepee poopoo</title>
+    <title>Introducing the DOM</title>
 
-    <link href="css/style.css" rel="stylesheet">
+    <!-- CSS stylesheet(s) -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
+
   <body>
-    <header>
-      <h1>Main heading</h1>
-    </header>
-
-    <section id="first">
-      <h2>Sub-heading</h2>
-      <!-- span is just to simply divide smth without doing anything, neutral -->
-      <p> <span class ="p-text">A paragraph of text. </span> Here is an <em>emphasized</em> word.</p>
+    <h1 id="main-heading" class="header">Introducing the DOM</h1>
+    <section id="well-section">
+      <h2 class="header">Well...</h2>
+      <p>
+        Well, here <span id="pronoun">we</span> are, using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">DOM</a>.
+      </p>
     </section>
 
-    <section id ="second">
-      <h2>Another sub-heading</h2>
-      <p class = second-p>Another paragraph of text. <strong>This is important</strong>.</p>
-      <p class = second-p>Here is a <a href="https://thi.cc/">thicc link</a>.</p>
+    <section id="clown-section">
+      <h2 class="header">A clown</h2>
+      <img id="clown-image" src="assets/images/clown.png" alt="A clown emoji.">
     </section>
 
-    <footer>
-      <strong>Contact details</strong>: don't call me, I'll call you.
-    </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>

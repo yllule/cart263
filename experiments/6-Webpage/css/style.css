@@ -5,38 +5,6 @@ By default that's nothing.
 
 **********************************************/
 
-h1 {
-    font-size: 3rem;
-}
-
-h1:hover {
-    color: red;
-}
-
-h2 {
-    font-family: Helvetica, sans-serif;
-    color: #ff8888;
-}
-
-strong, em {
-    color: #4488aa;
-}
-
-/* # means id */
-#first {
-    background-color : rgb(200, 200, 200);
-}
-
-#second {
-    background-color: rgb(100, 100, 100);
-}
-
-.second-p {
-    font-size : 1.5rem;
-}
-
-.p-text {
-    font-size : 0.5rem;
-}
-
-/* . = class = there are many elements in that class VS id = 1 thing */
+body {
+    font-family: sans-serif;
+  }
