@@ -1,58 +1,31 @@
-let mainHeading = document.getElementById('main-heading');
+let paragraph = document.getElementById('paragraph');
 
-//.style accesses css properties, change css properties in js
-mainHeading.style['color'] = '#339966'; //can be written either like this or like v
-mainHeading.style.fontSize = '4rem';
-mainHeading.style.fontFamily = 'Courier, monospace';
-mainHeading.style.backgroundColor = 'red';
+//3 different ways to set interval for event
+setTimeout(function() {
+    paragraph.style['color'] = '#ff0000';
+}, 3000);
 
-let wellSection = document.getElementById('well-section');
-wellSection.style['color'] = '#445566';
+// setInterval(blink, 500);
 
-let pronoun = document.getElementById('pronoun');
-
-//access html properties
-pronoun.innerHTML = '<strong>you</strong>';
-
-if (pronoun.innerText === 'we') {
-    pronoun.innerText = 'you';
-}
-
-let img = document.getElementById('clown-image');
-
-img.setAttribute('src', 'http://loremflickr.com/320/240/clown');
-
-// let headers = document.getElementsByClassName('header');
-
-// for (let i = 0; i < headers.length; i++) {
-//     headers[i].style['color'] = '#ff0000';
+// function blink() {
+//     let opacity = paragraph.style['opacity'];
+//     if (opacity === '1') {
+//         paragraph.style['opacity'] = '0';
+//     }
+//     else {
+//         paragraph.style['opacity'] = '1';
+//     }
 // }
 
-let headers = document.querySelectorAll('.header');
+let opacity = 1;
 
-for (let i = 0; i < headers.length; i++) {
-    headers[i].style['color'] = '#ff0000';
+fadeOut();
+
+function fadeOut() {
+    opacity -= 0.01;
+    paragraph.style['opacity'] = opacity;
+    if (opacity > 0) {
+        requestAnimationFrame(fadeOut);
+    }
 }
 
-// let h2s = document.getElementsByTagName('h2');
-
-// for (let i = 0; i < h2s.length; i++) {
-//     h2s[i].style['color'] = '#ff0000';
-// }
-
-
-//add elements to a page
-let newP = document.createElement('p');
-
-newP.innerText = "Gosh, I sure do like clowns."; //to make this show up on page, add it to clown-section
-
-let clownSection = document.getElementById('clown-section');
-
-clownSection.appendChild(newP);
-
-//remove elements of a page
-
-// let mainHeading = document.getElementById('main-heading');
-
-// //parent element = html body
-// mainHeading.parentElement.removeChild(mainHeading);
