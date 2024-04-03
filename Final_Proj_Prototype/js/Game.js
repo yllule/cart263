@@ -17,20 +17,20 @@ class Game extends Phaser.Scene {
         }, this);
 
 
-        this.events.on(Phaser.Scenes.Events.WAKE, function ()
-        {
-            this.wake(this.input, this.scene);
-        }, this);
+        // this.events.on(Phaser.Scenes.Events.WAKE, function ()
+        // {
+        //     this.wake(this.input, this.scene);
+        // }, this);
 
     }
 
-    wake (input, scene)
-    {
-        input.once(Phaser.Input.Events.POINTER_DOWN, event =>
-        {
-            scene.switch('play');
-        }, this);
-    }
+    // wake (input, scene)
+    // {
+    //     input.once(Phaser.Input.Events.POINTER_DOWN, event =>
+    //     {
+    //         scene.switch('play');
+    //     }, this);
+    // }
 
     update() {
         

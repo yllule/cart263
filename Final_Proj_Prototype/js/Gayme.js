@@ -8,13 +8,16 @@ class Gayme extends Phaser.Scene {
     create() {
 
         this.test = this.add.image(300, 300, 'acc');
+        this.test.setInteractive();
 
-        this.input.once(Phaser.Input.Events.POINTER_DOWN, function ()
-        {
+        this.test.on('pointerdown', () => this.scene.switch('play'))
 
-            this.scene.switch('play');
+        // this.input.once(Phaser.Input.Events.POINTER_DOWN, function ()
+        // {
 
-        }, this);
+        //     this.scene.switch('play');
+
+        // }, this);
 
 
         // this.events.on(Phaser.Scenes.Events.WAKE, function ()
