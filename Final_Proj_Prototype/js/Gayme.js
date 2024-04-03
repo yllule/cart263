@@ -7,7 +7,7 @@ class Gayme extends Phaser.Scene {
 
     create() {
 
-        this.test3 = this.add.image(300, 300, 'acc');
+        this.test = this.add.image(300, 300, 'acc');
 
         this.input.once(Phaser.Input.Events.POINTER_DOWN, function ()
         {

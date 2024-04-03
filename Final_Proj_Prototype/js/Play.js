@@ -15,13 +15,13 @@ class Play extends Phaser.Scene {
         //when you click on test img, switches to scene called game
         this.test.on('pointerdown', () => this.scene.switch('game'))
 
-        // this.events.on(Phaser.Scenes.Events.WAKE, function ()
-        // {
-        //     this.wake(this.input, this.scene);
-        // }, this);
+        this.events.on(Phaser.Scenes.Events.WAKE, function ()
+        {
+            this.wake(this.input, this.scene);
+        }, this);
 
 
-        this.test2.on('pointerdown', () => this.scene.switch('game'))
+        this.test2.on('pointerdown', () => this.scene.switch('gayme'))
 
         // this.events.on(Phaser.Scenes.Events.WAKE, function ()
         // {
@@ -31,14 +31,14 @@ class Play extends Phaser.Scene {
     }
 
     //makes it possible to 'save' where previous state was when switching states
-    // wake (input, scene)
-    // {
-    //     input.once(Phaser.Input.Events.POINTER_DOWN, () =>
-    //     {
-    //         scene.switch('game');
+    wake (input, scene)
+    {
+        input.once(Phaser.Input.Events.POINTER_DOWN, () =>
+        {
+            scene.switch('game');
 
-    //     }, this);
-    // }
+        }, this);
+    }
 
     update() {
         
