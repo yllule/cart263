@@ -8,6 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
         //load assets
         this.load.image('test', 'assets/images/clown.png');
+        this.load.image('acc', 'assets/images/a6.png');
         
 
         //start intro when everything has loaded

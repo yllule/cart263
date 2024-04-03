@@ -1,11 +1,13 @@
-class Game extends Phaser.Scene {
+class Gayme extends Phaser.Scene {
     constructor() {
         super({
-            key: 'game'
+            key: 'gayme'
         });
     }
 
     create() {
+
+        this.test3 = this.add.image(300, 300, 'acc');
 
         this.input.once(Phaser.Input.Events.POINTER_DOWN, function ()
         {
