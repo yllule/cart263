@@ -8,7 +8,7 @@ Final Project
 //randomize tasks? (sketch out plant asset variants)
 //make npcs randomly appear while playing + bell sound
 //make npcs talk before going to npctask scene
-//add timer/time system
+//add timer/time system/ set interval or mapping seconds to hours
 //update assets, make a list of task types
 //implement assets + finalize tasks
 //add intro scene w/ dialogue

@@ -10,7 +10,28 @@ class Npctask extends Phaser.Scene {
         this.test = this.add.image(500, 500, 'test');
         this.test.setInteractive();
 
-        //make test draggable to a certain spot, only when its at the spot you get a button (done!) to head back to main scene
+        //checks if the sprite has been dragged, which marks the task as complete
+        this.complete = false;
+
+        //makes sprite draggable
+        this.input.setDraggable(this.test);
+
+        this.input.on('drag', function (pointer, obj, dragX, dragY) {
+            obj.x = dragX;
+            obj.y = dragY;
+            // if (dragX > 950) {
+            //     this.complete === true;
+            // };
+         });
+
+        // if (this.complete) {
+        //     this.button = this.add.image(800, 800, 'test');
+        // }
+
+        console.log(this.complete);
+
+        
+        
 
         // this.input.once(Phaser.Input.Events.POINTER_DOWN, function ()
         // {
