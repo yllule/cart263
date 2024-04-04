@@ -3,6 +3,17 @@ Catherine Zaloshnja
 Final Project
 */
 
+//return to main scene after completing a 'task'
+//add simple dialogue
+//randomize tasks? (sketch out plant asset variants)
+//make npcs randomly appear while playing + bell sound
+//make npcs talk before going to npctask scene
+//add timer/time system
+//update assets, make a list of task types
+//implement assets + finalize tasks
+//add intro scene w/ dialogue
+//add end scene, end of day, going home, dialogue
+
 "use strict";
 
 
