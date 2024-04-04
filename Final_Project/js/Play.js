@@ -37,6 +37,29 @@ class Play extends Phaser.Scene {
         //     this.wake(this.input, this.scene);
         // }, this);
 
+        //everyday there are 6 tasks
+        this.plantTasks = [
+            'water',
+            'fertilize',
+            'repot',
+            'pest',
+            'prune'
+        ];
+
+        //everyday there are 6 customers
+        this.customers = [
+            'love bouquet', //cirrus
+            'houseplant safe for cat', //malna? or biscotte
+            'houseplant low light', //melanie
+            'flower friendship', //child...ennea?
+            'sibling LORE',
+            'houseplant for cooking', //amenda
+            'flower for spells', //mia..?
+            'medicinal plant for sick relative', //teen
+            'witch LORE + funeral bouquet',
+            'plant/flower for dye' //idk artist
+        ];
+
     }
 
     //makes it possible to 'save' where previous state was when switching states
