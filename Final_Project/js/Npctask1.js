@@ -1,7 +1,7 @@
-class Plant1task extends Phaser.Scene {
+class Npctask1 extends Phaser.Scene {
     constructor() {
         super({
-            key: 'plant1task'
+            key: 'npctask1'
         });
     }
 
@@ -49,7 +49,6 @@ class Plant1task extends Phaser.Scene {
             this.button.on('pointerdown', () => this.scene.switch('play'))
 
         }
-        
         
     }
 

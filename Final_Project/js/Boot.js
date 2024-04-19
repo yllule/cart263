@@ -10,7 +10,9 @@ class Boot extends Phaser.Scene {
         this.load.image('test', 'assets/images/clown.png');
         this.load.image('acc', 'assets/images/a6.png');
         this.load.image('bg', 'assets/images/bg.png');
+        this.load.image('bg2', 'assets/images/bg2.png');
         this.load.image('npc', 'assets/images/npc.png');
+        this.load.image('bgtools', 'assets/images/bgitems.png');
         //healthy plants
         this.load.image('p1a', 'assets/images/1a.png');
         this.load.image('p2a', 'assets/images/2a.png');
@@ -54,6 +56,13 @@ class Boot extends Phaser.Scene {
         this.load.image('npc6', 'assets/images/mia.png');
         this.load.image('npc7', 'assets/images/sei.png');
         this.load.image('npc8', 'assets/images/witch.png');
+        //tools
+        this.load.image('fertilizer', 'assets/images/fertilizer.png');
+        this.load.image('insecticide', 'assets/images/insecticide.png');
+        this.load.image('scissors', 'assets/images/scissors.png');
+        this.load.image('shovel', ' assets/images/shovel.png');
+        this.load.image('soil', 'assets/images/soil.png');
+        this.load.image('water', 'assets/images/water.png');
         
 
         //start intro when everything has loaded
