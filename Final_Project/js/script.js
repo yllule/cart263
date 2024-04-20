@@ -4,10 +4,7 @@ Final Project
 */
 
 
-//add simple dialogue
-//randomize tasks?
 //make npcs randomly appear while playing + bell sound
-//make npcs talk before going to npctask scene
 //add timer/time system/ set interval or mapping seconds to hours
 //add intro scene w/ dialogue
 //add end scene, end of day, going home, dialogue
