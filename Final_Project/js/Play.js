@@ -64,12 +64,12 @@ class Play extends Phaser.Scene {
 
         //setting for dialogue box visuals
         const dialogueBox = this.add.graphics();
-        dialogueBox.fillStyle(0xffffff);
-        dialogueBox.fillRect(100, 400, 600, 150);
+        dialogueBox.fillStyle(0xffffff, 0.8);
+        dialogueBox.fillRoundedRect(700, 950, 600, 100, 20);
         dialogueBox.setDepth(1); //makes it go over all other elements
         
         //create text to display dialogue
-        const dialogueText = this.add.text(120, 420, '', { fontFamily: 'Arial', fontSize: 20, color: '#FFFFFFF', wordWrap: { width: 560 } });
+        const dialogueText = this.add.text(720, 970, '', { fontFamily: 'Arial', fontSize: 20, color: '#FFFFFFF', wordWrap: { width: 560 }, align: 'center', padding: { x: 10 } });
         dialogueText.setDepth(2); //makes it go over dialogue box
 
         const biscotteDialogue = [
