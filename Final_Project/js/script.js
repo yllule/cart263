@@ -4,7 +4,7 @@ Final Project
 */
 
 
-//make npcs randomly appear while playing + bell sound
+//add bell sound when npcs appear
 //add timer/time system/ set interval or mapping seconds to hours
 //add intro scene w/ dialogue
 //add end scene, end of day, going home, dialogue

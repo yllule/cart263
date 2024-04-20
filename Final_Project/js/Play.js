@@ -7,13 +7,24 @@ class Play extends Phaser.Scene {
 
     create() {
 
+        //creating variables for the canvas width and height
         this.width = 1920;
         this.height = 1080;
 
+        //creating a variable for the background img
         this.bg = this.add.image(this.width/2, this.height/2, 'bg');
 
         //checks if tasks associated to plants/npcs have been complete
         this.plant1done = false;
+
+        //a shuffle function to randomize arrays
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+        }
 
         //plants
         if (!this.plant1done) {
@@ -39,7 +50,8 @@ class Play extends Phaser.Scene {
         this.plant15 = this.add.image(130, 725, 'p15a');
         this.plant16 = this.add.image(50, 825, 'p16a');
 
-        //npcs
+
+        //npcs array and variables
         this.customers = [
         this.npc1 = this.add.image(450, this.height/2, 'npc1'),
         this.npc6 = this.add.image(this.width/2, this.height/2-50, 'npc6'),
@@ -51,16 +63,30 @@ class Play extends Phaser.Scene {
         this.npc8 = this.add.image(700, 700, 'npc8'),
         ];
 
+        //shuffle the npcs array
+        shuffleArray(this.customers);
+
+
+        //hide all npc sprites initially
+        this.customers.forEach(npc => {
+            npc.visible = false;
+        });
 
         //making all npcs interactible
-        this.npc1.setInteractive();
-        this.npc2.setInteractive();
-        this.npc3.setInteractive();
-        this.npc4.setInteractive();
-        this.npc5.setInteractive();
-        this.npc6.setInteractive();
-        this.npc7.setInteractive();
-        this.npc8.setInteractive();
+        this.customers.forEach(npc => {
+            npc.setInteractive();
+        });
+
+        //setting a delay for each npc to appear
+        let delay = 0;
+        this.customers.forEach(npc => {
+            //show one npc after the delay (starting off with one customer in the store)
+            this.time.delayedCall(delay, () => {
+                npc.visible = true;
+            }, [], this);
+            //time interval between customers appearing
+            delay += 10000;
+        });
 
         //setting for dialogue box visuals
         const dialogueBox = this.add.graphics();
@@ -72,6 +98,7 @@ class Play extends Phaser.Scene {
         const dialogueText = this.add.text(720, 970, '', { fontFamily: 'Arial', fontSize: 20, color: '#FFFFFFF', wordWrap: { width: 560 }, align: 'center', padding: { x: 10 } });
         dialogueText.setDepth(2); //makes it go over dialogue box
 
+        //all customer dialogue lines + array index
         const biscotteDialogue = [
             "Oh, hi there!",
             "I was just looking for a new houseplant to liven up my home.",
@@ -175,7 +202,7 @@ class Play extends Phaser.Scene {
 
         let currentWitchDialogueIndex = 0;
 
-        //npc1 (biscotte) click event listener
+        //npc1 (biscotte) click event listener, shows dialogue after you click on her
         this.npc1.on('pointerdown', () => {
             //show dialogue box
             dialogueBox.visible = true;
