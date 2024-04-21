@@ -63,14 +63,14 @@ class Play extends Phaser.Scene {
         this.npc8 = this.add.image(700, 700, 'npc8'),
         ];
 
-        //shuffle the npcs array
-        shuffleArray(this.customers);
+        // //shuffle the npcs array
+        // shuffleArray(this.customers);
 
 
-        //hide all npc sprites initially
-        this.customers.forEach(npc => {
-            npc.visible = false;
-        });
+        // //hide all npc sprites initially
+        // this.customers.forEach(npc => {
+        //     npc.visible = false;
+        // });
 
         //making all npcs interactible
         this.customers.forEach(npc => {
@@ -143,8 +143,10 @@ class Play extends Phaser.Scene {
             "I see, so you're looking after Leora's shop while she attends to other matters.",
             "Ah, sorry, I was looking to speak to my sister and didn't expect to see a new face, much less a human.",
             "Hm? Ah, yes, Leora is my sibling. I wished to speak to her about a certain matter.",
-            "What's that look for? No, we're not blood siblings, obviously. We simply were created by the same mother.",
-            "What? What's wrong with my wording? Yes, we were created, not birthed."
+            "Oh, yes. While it may not look like it, we are siblings created from the same mother.",
+            "What? What's wrong with my wording? Yes, we were created, not birthed.",
+            "Anyways, since she isn't here I may as well come back another time.",
+            "When she comes back let her know I was looking for her."
         ]
 
         let currentLuceDialogueIndex = 0;
