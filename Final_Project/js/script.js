@@ -3,12 +3,6 @@ Catherine Zaloshnja
 Final Project
 */
 
-
-//add bell sound when npcs appear
-//add timer/time system/ set interval or mapping seconds to hours
-//add intro scene w/ dialogue
-//add end scene, end of day, going home, dialogue
-
 "use strict";
 
 

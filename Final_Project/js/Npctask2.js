@@ -22,23 +22,31 @@ class Npctask2 extends Phaser.Scene {
         this.water = this.add.image(700, 925, 'water');
 
         //add sprites for selectable plants
-        this.plant2 = this.add.image(this.width/3, 350, 'p2a');
-        this.plant10 = this.add.image(this.width/2+50, 350, 'p10a');
-        this.plant14 = this.add.image(this.width/2+400, 400, 'p14a');
+        this.plant3 = this.add.image(this.width/3, 350, 'p3a');
+        this.plant6 = this.add.image(this.width/2+50, 350, 'p6a');
+        this.plant8 = this.add.image(this.width/2+400, 350, 'p8a');
+        this.plant9 = this.add.image(this.width/2+750, 350, 'p9a');
+        this.plant13 = this.add.image(this.width/3-350, 350, 'p13a');
 
         //making the sprites 1.5x bigger...looks pixelated but idk the original size is too small
-        this.plant2.setScale(1.5);
-        this.plant10.setScale(1.5);
-        this.plant14.setScale(1.5);
+        this.plant3.setScale(1.5);
+        this.plant6.setScale(1.5);
+        this.plant8.setScale(1);
+        this.plant9.setScale(1);
+        this.plant13.setScale(1);
 
         //makes plant sprites interactible
-        this.plant2.setInteractive();
-        this.plant10.setInteractive();
-        this.plant14.setInteractive();
+        this.plant3.setInteractive();
+        this.plant6.setInteractive();
+        this.plant8.setInteractive();
+        this.plant9.setInteractive();
+        this.plant13.setInteractive();
 
-        this.input.setDraggable(this.plant2);
-        this.input.setDraggable(this.plant10);
-        this.input.setDraggable(this.plant14);
+        this.input.setDraggable(this.plant3);
+        this.input.setDraggable(this.plant6);
+        this.input.setDraggable(this.plant8);
+        this.input.setDraggable(this.plant9);
+        this.input.setDraggable(this.plant13);
 
         // this.fertilizer.setInteractive();
         // this.insecticide.setInteractive();
@@ -96,7 +104,7 @@ class Npctask2 extends Phaser.Scene {
          });
 
          //if plant 2, 10 or 14 is dragged over the counter (to hand over to customer) the task is deemed complete
-         if (this.plant2.y < 200 || this.plant10.y < 200 || this.plant14.y < 200) {
+         if (this.plant3.y < 200 || this.plant6.y < 200 || this.plant8.y < 200 || this.plant9.y < 200 || this.plant13.y < 200) {
             //text for task complete appears
             this.buttonBox.visible = true;
             this.buttonText.visible = true;

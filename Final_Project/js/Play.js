@@ -238,6 +238,7 @@ class Play extends Phaser.Scene {
                 this.npc2.on('pointerdown', () => this.scene.switch('npctask2'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentCirrusDialogueIndex > cirrusDialogue.length) {
+                    this.npc2.visible = false;
                     dialogueBox.visible = false;
                 }
             }
@@ -259,6 +260,7 @@ class Play extends Phaser.Scene {
                 this.npc3.on('pointerdown', () => this.scene.switch('npctask3'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentEnneaDialogueIndex > enneaDialogue.length) {
+                    this.npc3.visible = false;
                     dialogueBox.visible = false;
                 }
             }
@@ -297,6 +299,7 @@ class Play extends Phaser.Scene {
                 this.npc5.on('pointerdown', () => this.scene.switch('npctask5'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentMelanieDialogueIndex > melanieDialogue.length) {
+                    this.npc5.visible = false;
                     dialogueBox.visible = false;
                 }
             }
@@ -318,6 +321,7 @@ class Play extends Phaser.Scene {
                 this.npc6.on('pointerdown', () => this.scene.switch('npctask6'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentMiaDialogueIndex > miaDialogue.length) {
+                    this.npc6.visible = false;
                     dialogueBox.visible = false;
                 }
             }
@@ -339,6 +343,7 @@ class Play extends Phaser.Scene {
                 this.npc7.on('pointerdown', () => this.scene.switch('npctask7'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentSeiDialogueIndex > seiDialogue.length) {
+                    this.npc7.visible = false;
                     dialogueBox.visible = false;
                 }
             }

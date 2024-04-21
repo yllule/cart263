@@ -22,23 +22,23 @@ class Npctask5 extends Phaser.Scene {
         this.water = this.add.image(700, 925, 'water');
 
         //add sprites for selectable plants
-        this.plant2 = this.add.image(this.width/3, 350, 'p2a');
-        this.plant10 = this.add.image(this.width/2+50, 350, 'p10a');
-        this.plant14 = this.add.image(this.width/2+400, 400, 'p14a');
+        this.plant7 = this.add.image(this.width/3, 350, 'p7a');
+        this.plant15 = this.add.image(this.width/2+50, 350, 'p15a');
+        this.plant5 = this.add.image(this.width/2+400, 350, 'p5a');
 
         //making the sprites 1.5x bigger...looks pixelated but idk the original size is too small
-        this.plant2.setScale(1.5);
-        this.plant10.setScale(1.5);
-        this.plant14.setScale(1.5);
+        this.plant7.setScale(1.5);
+        this.plant15.setScale(1.5);
+        this.plant5.setScale(1.5);
 
         //makes plant sprites interactible
-        this.plant2.setInteractive();
-        this.plant10.setInteractive();
-        this.plant14.setInteractive();
+        this.plant7.setInteractive();
+        this.plant15.setInteractive();
+        this.plant5.setInteractive();
 
-        this.input.setDraggable(this.plant2);
-        this.input.setDraggable(this.plant10);
-        this.input.setDraggable(this.plant14);
+        this.input.setDraggable(this.plant7);
+        this.input.setDraggable(this.plant15);
+        this.input.setDraggable(this.plant5);
 
         // this.fertilizer.setInteractive();
         // this.insecticide.setInteractive();
@@ -96,7 +96,7 @@ class Npctask5 extends Phaser.Scene {
          });
 
          //if plant 2, 10 or 14 is dragged over the counter (to hand over to customer) the task is deemed complete
-         if (this.plant2.y < 200 || this.plant10.y < 200 || this.plant14.y < 200) {
+         if (this.plant7.y < 200 || this.plant15.y < 200 || this.plant5.y < 200) {
             //text for task complete appears
             this.buttonBox.visible = true;
             this.buttonText.visible = true;
