@@ -11,6 +11,8 @@ class Play extends Phaser.Scene {
         this.width = 1920;
         this.height = 1080;
 
+        this.bell = this.sound.add('bell');
+
         //creating a variable for the background img
         this.bg = this.add.image(this.width/2, this.height/2, 'bg');
 
@@ -78,6 +80,7 @@ class Play extends Phaser.Scene {
             //show one npc after the delay (starting off with one customer in the store)
             this.time.delayedCall(delay, () => {
                 npc.visible = true;
+                this.sound.play('bell', { volume: 0.2}); //making the sound volume lower
             }, [], this);
             //time interval between customers appearing
             delay += 10000;

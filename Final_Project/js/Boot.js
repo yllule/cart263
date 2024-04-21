@@ -7,7 +7,6 @@ class Boot extends Phaser.Scene {
 
     preload() {
         //load assets
-        this.load.image('test', 'assets/images/clown.png');
         this.load.image('acc', 'assets/images/a6.png');
         this.load.image('bg', 'assets/images/bg.png');
         this.load.image('bg2', 'assets/images/bg2.png');
@@ -63,6 +62,10 @@ class Boot extends Phaser.Scene {
         this.load.image('shovel', ' assets/images/shovel.png');
         this.load.image('soil', 'assets/images/soil.png');
         this.load.image('water', 'assets/images/water.png');
+
+        //load sounds
+        this.load.audio('bgm', 'assets/sounds/bgm.wav');
+        this.load.audio('bell', 'assets/sounds/bell.wav');
         
 
         //start intro when everything has loaded
@@ -72,6 +75,12 @@ class Boot extends Phaser.Scene {
     }
 
     create() {
+                //adding background music
+                this.bgm = this.sound.add('bgm');
+
+                this.bgm.play({
+                    loop: true
+                });
 
     }
 
