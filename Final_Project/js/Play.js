@@ -408,7 +408,15 @@ class Play extends Phaser.Scene {
     //checks if all tasks are complete after a task has been completed
     checkAllTasksCompleted() {
         if (this.task1complete && this.task2complete && this.task3complete && this.task4complete && this.task5complete && this.task6complete && this.task7complete && this.task8complete) {
-            this.scene.start('end');
+            const dialogueBox2 = this.add.graphics();
+            dialogueBox2.fillStyle(0xffffff, 0.8);
+            dialogueBox2.fillRoundedRect(700, 950, 600, 100, 20);
+            dialogueBox2.setDepth(1); //makes it go over all other elements
+            
+            //create text to display dialogue
+            const dialogueText = this.add.text(720, 970, '', { fontFamily: 'Arial', fontSize: 20, color: '#FFFFFFF', wordWrap: { width: 560 }, align: 'center', padding: { x: 10 } });
+            dialogueText.setDepth(2); //makes it go over dialogue box
+            dialogueText.setText("You've tended to all the customers for the day. (End of the game");
         }
     }
 }
