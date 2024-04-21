@@ -6,13 +6,12 @@ class Boot extends Phaser.Scene {
     }
 
     preload() {
-        //load assets
-        this.load.image('acc', 'assets/images/a6.png');
+        //load general assets
         this.load.image('bg', 'assets/images/bg.png');
         this.load.image('bg2', 'assets/images/bg2.png');
         this.load.image('npc', 'assets/images/npc.png');
         this.load.image('bgtools', 'assets/images/bgitems.png');
-        //healthy plants
+        //healthy plant assets
         this.load.image('p1a', 'assets/images/1a.png');
         this.load.image('p2a', 'assets/images/2a.png');
         this.load.image('p3a', 'assets/images/3a.png');
@@ -29,7 +28,7 @@ class Boot extends Phaser.Scene {
         this.load.image('p14a', 'assets/images/14a.png');
         this.load.image('p15a', 'assets/images/15a.png');
         this.load.image('p16a', 'assets/images/16a.png');
-        //unhealthy plants
+        //unhealthy plant assets
         this.load.image('p1b', 'assets/images/1b.png');
         this.load.image('p2b', 'assets/images/2b.png');
         this.load.image('p3b', 'assets/images/3b.png');
@@ -46,7 +45,7 @@ class Boot extends Phaser.Scene {
         this.load.image('p14b', 'assets/images/14b.png');
         this.load.image('p15b', 'assets/images/15b.png');
         this.load.image('p16b', 'assets/images/16b.png');
-        //npcs
+        //customer assets
         this.load.image('npc1', 'assets/images/bis.png');
         this.load.image('npc2', 'assets/images/cirrus.png');
         this.load.image('npc3', 'assets/images/ennea.png');
@@ -55,7 +54,7 @@ class Boot extends Phaser.Scene {
         this.load.image('npc6', 'assets/images/mia.png');
         this.load.image('npc7', 'assets/images/sei.png');
         this.load.image('npc8', 'assets/images/witch.png');
-        //tools
+        //tool assets
         this.load.image('fertilizer', 'assets/images/fertilizer.png');
         this.load.image('insecticide', 'assets/images/insecticide.png');
         this.load.image('scissors', 'assets/images/scissors.png');

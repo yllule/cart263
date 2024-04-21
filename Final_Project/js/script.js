@@ -12,6 +12,8 @@ or having to guess which plant the customer is talking about, with there being a
 In the end I was only able to make the player choose what plant to give the character, without the customer reacting to their decision, so it is very simple and...not very fun.
 But hopefully the little bits of lore and story make up for it.
 
+The ending scene is a bit buggy sometimes, but i just wanted to have something to let you know that it's the end of the game.
+
 sounds are from Sirkoto51 and 3bagbrew on freesound.org
 */
 
@@ -25,7 +27,7 @@ let config = {
     physics: {
         default: `arcade`
     },
-    scene: [Boot, Play, Npctask1, Npctask2, Npctask3, Npctask5, Npctask6, Npctask7, Plant1task]
+    scene: [Boot, Play, Npctask1, Npctask2, Npctask3, Npctask5, Npctask6, Npctask7, Plant1task, End]
 };
 
 let game = new Phaser.Game(config);

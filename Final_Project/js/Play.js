@@ -43,6 +43,16 @@ class Play extends Phaser.Scene {
         this.plant15 = this.add.image(130, 725, 'p15a');
         this.plant16 = this.add.image(50, 825, 'p16a');
 
+        //checks if the customers have been tended to
+        this.task1complete = false;
+        this.task2complete = false;
+        this.task3complete = false;
+        this.task4complete = false;
+        this.task5complete = false;
+        this.task6complete = false;
+        this.task7complete = false;
+        this.task8complete = false;
+
 
         //npcs array and variables
         this.customers = [
@@ -220,9 +230,10 @@ class Play extends Phaser.Scene {
                     //npc visibility is set back to false bcz they leave
                     this.npc1.visible = false;
                     dialogueBox.visible = false;
+                    this.task1complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
-
         });
 
         //npc2 (cirrus) click event listener
@@ -243,6 +254,8 @@ class Play extends Phaser.Scene {
                 if (currentCirrusDialogueIndex > cirrusDialogue.length) {
                     this.npc2.visible = false;
                     dialogueBox.visible = false;
+                    this.task2complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
         });
@@ -265,6 +278,8 @@ class Play extends Phaser.Scene {
                 if (currentEnneaDialogueIndex > enneaDialogue.length) {
                     this.npc3.visible = false;
                     dialogueBox.visible = false;
+                    this.task3complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
         });
@@ -283,6 +298,8 @@ class Play extends Phaser.Scene {
                 if (currentLuceDialogueIndex > luceDialogue.length) {
                     this.npc4.visible = false;
                     dialogueBox.visible = false;
+                    this.task4complete = true;
+                    this.checkAllTasksCompleted();
                 }
         });
 
@@ -304,6 +321,8 @@ class Play extends Phaser.Scene {
                 if (currentMelanieDialogueIndex > melanieDialogue.length) {
                     this.npc5.visible = false;
                     dialogueBox.visible = false;
+                    this.task5complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
         });
@@ -326,6 +345,8 @@ class Play extends Phaser.Scene {
                 if (currentMiaDialogueIndex > miaDialogue.length) {
                     this.npc6.visible = false;
                     dialogueBox.visible = false;
+                    this.task6complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
         });
@@ -348,6 +369,8 @@ class Play extends Phaser.Scene {
                 if (currentSeiDialogueIndex > seiDialogue.length) {
                     this.npc7.visible = false;
                     dialogueBox.visible = false;
+                    this.task7complete = true;
+                    this.checkAllTasksCompleted();
                 }
             }
         });
@@ -366,6 +389,8 @@ class Play extends Phaser.Scene {
             if (currentWitchDialogueIndex > witchDialogue.length) {
                 this.npc8.visible = false;
                 dialogueBox.visible = false;
+                this.task8complete = true;
+                this.checkAllTasksCompleted();
             }
 
         });
@@ -380,8 +405,10 @@ class Play extends Phaser.Scene {
     update() {
 
     }
-
-    handleInput() {
-
+    //checks if all tasks are complete after a task has been completed
+    checkAllTasksCompleted() {
+        if (this.task1complete && this.task2complete && this.task3complete && this.task4complete && this.task5complete && this.task6complete && this.task7complete && this.task8complete) {
+            this.scene.start('end');
+        }
     }
 }
