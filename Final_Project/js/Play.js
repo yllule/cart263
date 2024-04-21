@@ -14,9 +14,6 @@ class Play extends Phaser.Scene {
         //creating a variable for the background img
         this.bg = this.add.image(this.width/2, this.height/2, 'bg');
 
-        //checks if tasks associated to npcs have been complete
-        this.task1complete = false;
-
         //a shuffle function to randomize arrays
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -26,14 +23,8 @@ class Play extends Phaser.Scene {
         return array;
         }
 
-        //plants
-        if (!this.plant1done) {
-            this.plant1 = this.add.image(this.width/2-75, 335, 'p1a');
-            this.plant1.setInteractive();
-        }
-        else {
-            this.plant1 = this.add.image(this.width/2-75, 335, 'p1b');
-        }
+        //plant sprites. they are currently just used as pretty decoration, but originally I wanted to make them clickable and associate each plant to a task, like the customers
+        this.plant1 = this.add.image(this.width/2-75, 335, 'p1a');
         this.plant2 = this.add.image(this.width/2+50, 315, 'p2a');
         this.plant3 = this.add.image(this.width/2+170, 300, 'p3a');
         this.plant4 = this.add.image(this.width/2+275, 325, 'p4a');
@@ -244,7 +235,7 @@ class Play extends Phaser.Scene {
         
             if (currentCirrusDialogueIndex >= cirrusDialogue.length) {
                 //when you click on npc img, switches to scene called npctask
-                // this.npc2.on('pointerdown', () => this.scene.switch('npctask2'))
+                this.npc2.on('pointerdown', () => this.scene.switch('npctask2'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentCirrusDialogueIndex > cirrusDialogue.length) {
                     dialogueBox.visible = false;
