@@ -19,7 +19,7 @@ let config = {
     physics: {
         default: `arcade`
     },
-    scene: [Boot, Play, Npctask1, Npctask2, Npctask3, Npctask4, Npctask5, Npctask6, Npctask7, Npctask8, Plant1task]
+    scene: [Boot, Play, Npctask1, Npctask2, Npctask3, Npctask5, Npctask6, Npctask7, Plant1task]
 };
 
 let game = new Phaser.Game(config);

@@ -1,7 +1,7 @@
-class Npctask2 extends Phaser.Scene {
+class Npctask6 extends Phaser.Scene {
     constructor() {
         super({
-            key: 'npctask2'
+            key: 'npctask6'
         });
     }
 

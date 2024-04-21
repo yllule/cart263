@@ -256,7 +256,7 @@ class Play extends Phaser.Scene {
         
             if (currentEnneaDialogueIndex >= enneaDialogue.length) {
                 //when you click on npc img, switches to scene called npctask
-                // this.npc3.on('pointerdown', () => this.scene.switch('npctask3'))
+                this.npc3.on('pointerdown', () => this.scene.switch('npctask3'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentEnneaDialogueIndex > enneaDialogue.length) {
                     dialogueBox.visible = false;
@@ -275,14 +275,10 @@ class Play extends Phaser.Scene {
             //go to next dialogue line in index
             currentLuceDialogueIndex++;
         
-            if (currentLuceDialogueIndex >= luceDialogue.length) {
-                //when you click on npc img, switches to scene called npctask
-                // this.npc4.on('pointerdown', () => this.scene.switch('npctask4'))
-                //hide dialogue box when all dialogue lines are done
                 if (currentLuceDialogueIndex > luceDialogue.length) {
+                    this.npc4.visible = false;
                     dialogueBox.visible = false;
                 }
-            }
         });
 
         //npc5 (melanie) click event listener
@@ -298,7 +294,7 @@ class Play extends Phaser.Scene {
         
             if (currentMelanieDialogueIndex >= melanieDialogue.length) {
                 //when you click on npc img, switches to scene called npctask
-                // this.npc5.on('pointerdown', () => this.scene.switch('npctask5'))
+                this.npc5.on('pointerdown', () => this.scene.switch('npctask5'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentMelanieDialogueIndex > melanieDialogue.length) {
                     dialogueBox.visible = false;
@@ -319,7 +315,7 @@ class Play extends Phaser.Scene {
         
             if (currentMiaDialogueIndex >= miaDialogue.length) {
                 //when you click on npc img, switches to scene called npctask
-                // this.npc6.on('pointerdown', () => this.scene.switch('npctask6'))
+                this.npc6.on('pointerdown', () => this.scene.switch('npctask6'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentMiaDialogueIndex > miaDialogue.length) {
                     dialogueBox.visible = false;
@@ -340,7 +336,7 @@ class Play extends Phaser.Scene {
         
             if (currentSeiDialogueIndex >= seiDialogue.length) {
                 //when you click on npc img, switches to scene called npctask
-                // this.npc7.on('pointerdown', () => this.scene.switch('npctask7'))
+                this.npc7.on('pointerdown', () => this.scene.switch('npctask7'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentSeiDialogueIndex > seiDialogue.length) {
                     dialogueBox.visible = false;
@@ -358,15 +354,12 @@ class Play extends Phaser.Scene {
         
             //go to next dialogue line in index
             currentWitchDialogueIndex++;
-        
-            if (currentWitchDialogueIndex >= witchDialogue.length) {
-                //when you click on npc img, switches to scene called npctask
-                // this.npc8.on('pointerdown', () => this.scene.switch('npctask8'))
-                //hide dialogue box when all dialogue lines are done
-                if (currentWitchDialogueIndex > witchDialogue.length) {
-                    dialogueBox.visible = false;
-                }
+
+            if (currentWitchDialogueIndex > witchDialogue.length) {
+                this.npc8.visible = false;
+                dialogueBox.visible = false;
             }
+
         });
         
         //hide dialogue box initially
