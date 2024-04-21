@@ -55,6 +55,37 @@ class Npctask1 extends Phaser.Scene {
         // this.input.setDraggable(this.soil);
         // this.input.setDraggable(this.water);
 
+        const dialogue = "Drag your plant of choice over the counter to hand it to the customer.";
+
+        //setting for dialogue box visuals
+        const dialogueBox = this.add.graphics();
+        dialogueBox.fillStyle(0xffffff, 0.8);
+        dialogueBox.fillRoundedRect(700, 950, 600, 100, 20);
+        dialogueBox.setDepth(1); //makes it go over all other elements
+        
+        //create text to display dialogue
+        const dialogueText = this.add.text(720, 970, '', { fontFamily: 'Arial', fontSize: 20, color: '#FFFFFFF', wordWrap: { width: 560 }, align: 'center', padding: { x: 10 } });
+        dialogueText.setDepth(2); //makes it go over dialogue box
+        
+        //display the dialogue at the current index
+        dialogueText.setText(dialogue);
+
+        const completeButton = "Task complete!";
+
+        //setting for button visuals
+        this.buttonBox = this.add.graphics();
+        this.buttonBox.fillStyle(0xffffff);
+        this.buttonBox.fillRoundedRect(this.width/2-75, this.height/2+40, 175, 50, 15);
+        this.buttonBox.setDepth(1);
+        this.buttonBox.setInteractive();
+
+        this.buttonText = this.add.text(this.width/2-65, this.height/2+55, '', { fontFamily: 'Arial', fontSize : 20, color: '#000000', wordWrap: { width: 560 }, align: 'center', padding: { x:10 } });
+        this.buttonText.setDepth(2);
+
+        this.buttonText.setText(completeButton);
+
+        this.buttonBox.visible = false;
+        this.buttonText.visible = false;
     }
 
     update() {
@@ -64,21 +95,16 @@ class Npctask1 extends Phaser.Scene {
             obj.y = dragY;
          });
 
-         //if plant 2, 10 or 14 is dragged over the counter (to hand over to customer) the task is deemed complete and the button to return to the main scene appears
+         //if plant 2, 10 or 14 is dragged over the counter (to hand over to customer) the task is deemed complete
          if (this.plant2.y < 200 || this.plant10.y < 200 || this.plant14.y < 200) {
-            this.button = this.add.image(800, 800, 'test');
-            this.button.setInteractive();
-            this.button.on('pointerdown', () => this.scene.switch('play'))
+            //text for task complete appears
+            this.buttonBox.visible = true;
+            this.buttonText.visible = true;
+            //after 1.5 seconds it switches back to main scene
+            this.time.delayedCall(1500, function() {
+                this.scene.switch('play');
+            }, [], this);
          }
-
-        // //if img is dragged over half of the canvas, task is considered 'complete' and the button to move to main scene appears
-        // if (this.fertilizer.x > 950) {
-        //     this.button = this.add.image(800, 800, 'test');
-        //     this.button.setInteractive();
-        //     this.button.on('pointerdown', () => this.scene.switch('play'))
-
-        // }
-        
     }
 
     handleInput() {

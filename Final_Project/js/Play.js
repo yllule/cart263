@@ -14,8 +14,8 @@ class Play extends Phaser.Scene {
         //creating a variable for the background img
         this.bg = this.add.image(this.width/2, this.height/2, 'bg');
 
-        //checks if tasks associated to plants/npcs have been complete
-        this.plant1done = false;
+        //checks if tasks associated to npcs have been complete
+        this.task1complete = false;
 
         //a shuffle function to randomize arrays
         function shuffleArray(array) {
@@ -63,14 +63,18 @@ class Play extends Phaser.Scene {
         this.npc8 = this.add.image(700, 700, 'npc8'),
         ];
 
-        // //shuffle the npcs array
-        // shuffleArray(this.customers);
+        //shuffle the npcs array
+        shuffleArray(this.customers);
 
-
-        // //hide all npc sprites initially
-        // this.customers.forEach(npc => {
-        //     npc.visible = false;
-        // });
+        //hide all npc sprites initially
+        this.npc1.visible = false;
+        this.npc2.visible = false;
+        this.npc3.visible = false;
+        this.npc4.visible = false;
+        this.npc5.visible = false;
+        this.npc6.visible = false;
+        this.npc7.visible = false;
+        this.npc8.visible = false;
 
         //making all npcs interactible
         this.customers.forEach(npc => {
@@ -137,7 +141,6 @@ class Play extends Phaser.Scene {
 
         let currentEnneaDialogueIndex = 0;
 
-        //add more!!!
         const luceDialogue = [
             "Hm? Who are you? I've never seen you around here before.",
             "I see, so you're looking after Leora's shop while she attends to other matters.",
@@ -220,9 +223,12 @@ class Play extends Phaser.Scene {
                 this.npc1.on('pointerdown', () => this.scene.switch('npctask1'))
                 //hide dialogue box when all dialogue lines are done
                 if (currentBiscotteDialogueIndex > biscotteDialogue.length) {
+                    //npc visibility is set back to false bcz they leave
+                    this.npc1.visible = false;
                     dialogueBox.visible = false;
                 }
             }
+
         });
 
         //npc2 (cirrus) click event listener
@@ -375,16 +381,7 @@ class Play extends Phaser.Scene {
         //hide dialogue box initially
         dialogueBox.visible = false;
 
-        this.plant1.on('pointerdown', () => this.scene.switch('plant1task'))
-
-        //everyday there are 6 tasks
-        this.plantTasks = [
-            'water',
-            'fertilize',
-            'repot',
-            'pest',
-            'prune'
-        ];
+        // this.plant1.on('pointerdown', () => this.scene.switch('plant1task'))
 
     }
 
